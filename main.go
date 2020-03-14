@@ -6,17 +6,23 @@ import (
 )
 
 func main() {
+	rki := loadRKI()
 	sum := 0
-	fmt.Printf("%-22s %8s    %s\n", "Bundesland", "Fälle", "URL")
+	fmt.Printf("%-22s %8s %8s    %s\n", "Bundesland", "Fälle", "RKI", "URL")
 	fmt.Println(strings.Repeat("=", 140))
-	for name, region := range bundeslaender() {
-		casenumber := loadRegion(region)
+	for regionName, regionData := range regions() {
+		casenumber := loadRegion(regionData)
+		rki := rki.lookup(regionName)
 		if casenumber == 0 {
-			fmt.Printf("%-22s %8s    %s\n", name, "n/a", region.URL[8:])
+			fmt.Printf("%-22s %8s %8d    %s\n", regionName, "n/a", rki, regionData.URL[8:])
 		} else {
-			fmt.Printf("%-22s %8d    %s\n", name, casenumber, region.URL[8:])
+			fmt.Printf("%-22s %8d %8d    %s\n", regionName, casenumber, rki, regionData.URL[8:])
 		}
-		sum += casenumber
+		if rki > casenumber {
+			sum += rki
+		} else {
+			sum += casenumber
+		}
 	}
-	fmt.Printf("%-22s %8d    %s\n", "Deutschland", sum, "github.com/HoffmannP/coronaZahlen")
+	fmt.Printf("%-22s %8d %8d    %s\n", "Deutschland", sum, rki.lookup("Gesamt"), "github.com/HoffmannP/coronaZahlen")
 }

@@ -1,7 +1,7 @@
 package main
 
-func bundeslaender() (r map[string]caseRegion) {
-	return map[string]caseRegion{
+func regions() (r caseRegions) {
+	return caseRegions{
 		"Baden-Würtemberg": {
 			URL:      "https://sozialministerium.baden-wuerttemberg.de/de/gesundheit-pflege/gesundheitsschutz/infektionsschutz-hygiene/informationen-zu-coronavirus/",
 			Selector: "figcaption",

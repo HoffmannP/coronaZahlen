@@ -9,6 +9,8 @@ import (
 	"github.com/gocolly/colly/v2"
 )
 
+type caseRegions map[string]caseRegion
+
 type caseRegion struct {
 	URL      string
 	Selector string
@@ -21,6 +23,9 @@ func errorHandler(text string, err error) {
 }
 
 func toNumber(t string) int {
+	if t == "" {
+		return 0
+	}
 	text := strings.ReplaceAll(t, ".", "")
 	i, err := strconv.ParseInt(text, 10, 0)
 	if err != nil {
