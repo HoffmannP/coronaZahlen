@@ -1,4 +1,4 @@
-module github.com/HoffmannP/coronaBlog
+module github.com/HoffmannP/coronaZahlen
 
 go 1.14
 
