@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fallzahlen Corona Deutschlandweit</title>
+  <meta name="description" content="Fallzahlen Corona Deutschlandweit">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- http://getskeleton.com/ -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <!-- link rel="stylesheet" href="css/custom.css" -->
+  <!-- link rel="stylesheet" href="css/github-prettify-theme.css" -->
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- script src="js/site.js"></ -->
+
+  <!-- Favicon
+    Source image from: https://www.scientificanimations.com/wiki-images/
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Fallzahlen Corona Deutschlandweit</h1>
+
+        <p>Die Fallzahlen sind aus den Homepages (z.T. Pressemitteilungen) der Bundesländer zusammengetragen. Die Gesamtzahl ist die Summe der für jedes Bundesland jeweils höheren Fallzahl (RKI bzw. Bundesland) in der Hoffnung damit stets die aktuellere Zahl zu nutzen. (Stand:&nbsp;{{.Date}})</p>
+        
+        <table class="u-full-width">
+        		<thead>
+        			<tr>{{range .Header}}
+        				<th>{{.}}</th>
+                    {{end}}</tr>
+                </thead>
+                <tbody>{{range .Rows}}
+        			<tr>{{range .}}
+                        <td>{{.}}</td>
+                    {{end}}</tr>
+                {{end}}</tbody>
+                <tfoot>
+        			<tr>{{range .Footer}}
+                        <th>{{.}}</th>
+                    {{end}}</tr>
+                </tfoot>
+        </table>
+
+        <p>Diese Website ist ein privates Projekt. Der Quellcode steht unter der GPLv3 und ist auf <a href="https://github.com/HoffmannP/coronaZahlen">Github</a> zu finden.</p>
+    </div>
+</body>

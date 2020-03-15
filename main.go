@@ -1,28 +1,37 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-)
+import "strconv"
 
 func main() {
+	header := []string{"Bundesland", "Fälle", "RKI", "URL"}
+	var rows [][]string
+
 	rki := loadRKI()
 	sum := 0
-	fmt.Printf("%-22s %8s %8s    %s\n", "Bundesland", "Fälle", "RKI", "URL")
-	fmt.Println(strings.Repeat("=", 140))
-	for regionName, regionData := range regions() {
+	for regionName, regionData := range updateURLs(regions()) {
+		var line []string
+		line = append(line, regionName)
+
 		casenumber := loadRegion(regionData)
 		rki := rki.lookup(regionName)
-		if casenumber == 0 {
-			fmt.Printf("%-22s %8s %8d    %s\n", regionName, "n/a", rki, regionData.URL[8:])
-		} else {
-			fmt.Printf("%-22s %8d %8d    %s\n", regionName, casenumber, rki, regionData.URL[8:])
-		}
-		if rki > casenumber {
+		if casenumber == -1 {
+			line = append(line, "n/a", strconv.Itoa(rki))
 			sum += rki
 		} else {
-			sum += casenumber
+			if casenumber > rki {
+				line = append(line, "<strong>"+strconv.Itoa(casenumber)+"</strong>", strconv.Itoa(rki))
+				sum += casenumber
+			} else {
+				line = append(line, strconv.Itoa(casenumber), "<strong>"+strconv.Itoa(rki)+"</strong>")
+				sum += rki
+			}
 		}
+
+		line = append(line, "<a href=\""+regionData.URL+"\">Quelle</a>")
+		rows = append(rows, line)
 	}
-	fmt.Printf("%-22s %8d %8d    %s\n", "Deutschland", sum, rki.lookup("Gesamt"), "github.com/HoffmannP/coronaZahlen")
+
+	footer := []string{"Deutschland", strconv.Itoa(sum), strconv.Itoa(rki.lookup("Gesamt")), "<a href=\"" + rki.url + "\">Quelle</a>"}
+
+	display(header, rows, footer, "dist/coronaZahl.html")
 }

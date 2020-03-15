@@ -9,6 +9,7 @@ import (
 
 type rki struct {
 	table *goquery.Selection
+	url   string
 }
 
 func cellFirstNumber(row *goquery.Selection, number int) int {
@@ -17,10 +18,11 @@ func cellFirstNumber(row *goquery.Selection, number int) int {
 
 func loadRKI() (r rki) {
 	c := colly.NewCollector()
+	r.url = "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html"
 	c.OnHTML("table", func(e *colly.HTMLElement) {
 		r.table = e.DOM
 	})
-	c.Visit("https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html")
+	c.Visit(r.url)
 	return
 }
 

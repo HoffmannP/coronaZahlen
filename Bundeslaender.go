@@ -1,8 +1,8 @@
 package main
 
-func regions() (r caseRegions) {
+func regions() caseRegions {
 	return caseRegions{
-		"Baden-Würtemberg": {
+		"Baden-Württemberg": {
 			URL:      "https://sozialministerium.baden-wuerttemberg.de/de/gesundheit-pflege/gesundheitsschutz/infektionsschutz-hygiene/informationen-zu-coronavirus/",
 			Selector: "figcaption",
 			Match:    `([.\d]+) bestätigte Corona-Fälle`,
@@ -13,14 +13,14 @@ func regions() (r caseRegions) {
 			Match:    `([.\d]+)`,
 		},
 		"Berlin": {
-			URL:      "https://www.berlin.de/sen/gesundheit/themen/gesundheitsschutz-und-umwelt/infektionsschutz/coronavirus/",
-			Selector: "",
-			Match:    `([.\d]+)`,
+			URL:      "https://www.berlin.de/sen/gpg/service/presse/",
+			Selector: ".rss > .html5-section > ul > li > a",
+			Match:    `Coronavirus: Derzeit ([.\d]+) bestätigte Fälle`,
 		},
 		"Brandenburg": {
 			URL:      "https://msgiv.brandenburg.de/msgiv/de/start/",
-			Selector: "",
-			Match:    `([.\d]+)`,
+			Selector: "#form_id32516 > div > div > h2",
+			Match:    `Insgesamt ([.\d]+) Erkrankungen`,
 		},
 		"Bremen": {
 			URL:      "https://www.gesundheit.bremen.de/sixcms/detail.php?gsid=bremen229.c.32657.de",
@@ -38,9 +38,9 @@ func regions() (r caseRegions) {
 			Match:    `insgesamt ([.\d]+) SARS-CoV-2-Fälle`,
 		},
 		"Mecklenburg-Vorpommern": {
-			URL:      "https://www.regierung-mv.de/Landesregierung/wm/Aktuelles--Blickpunkte/Wichtige-Informationen-zum-Corona%E2%80%93Virus",
-			Selector: "",
-			Match:    `([.\d]+)`,
+			URL:      "https://www.regierung-mv.de/Landesregierung/wm/Aktuell/?sa.query=neue+Corona-Infektionen&sa.pressemitteilungen.area=11",
+			Selector: ".dvz-contenttype-presseserviceassistent",
+			Match:    `Insgesamt wurden bislang ([.\d]+) Menschen`,
 		},
 		"Niedersachsen": {
 			URL:      "https://www.niedersachsen.de/Coronavirus",
@@ -68,14 +68,14 @@ func regions() (r caseRegions) {
 			Match:    `([.\d]+)`,
 		},
 		"Sachsen-Anhalt": {
-			URL:      "https://ms.sachsen-anhalt.de/themen/gesundheit/aktuell/coronavirus/",
-			Selector: "",
+			URL:      "https://ms.sachsen-anhalt.de/presse/pressemitteilungen/?no_cache=1",
+			Selector: ".tx-rssdisplay > div > div > h2",
 			Match:    `([.\d]+)`,
 		},
 		"Schleswig-Holstein": {
-			URL:      "https://www.schleswig-holstein.de/DE/Landesregierung/VIII/_startseite/Artikel_2020/I/200129_Grippe_Coronavirus.html",
-			Selector: "",
-			Match:    `([.\d]+)`,
+			URL:      "https://schleswig-holstein.de/SiteGlobals/Forms/Suche/DE/Expertensuche_Formular.html?gts=%2526aa42becc-5285-4475-af4d-0413dde5e634_list%253DdateOfIssue_dt%252Bdesc&documentType_=pressrelease&templateQueryString=Gesundheitsministerium+informiert+zum+Corona-Virus",
+			Selector: "#content > .singleview > .bodyText",
+			Match:    `positiv getesteten Covid19-Fälle in Schleswig-Holstein: Summe ([.\d]+)`,
 		},
 		"Thüringen": {
 			URL:      "https://www.tmasgff.de/covid-19",

@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/PuerkitoBio/goquery"
 	"github.com/gocolly/colly/v2"
 )
 
@@ -34,20 +35,23 @@ func toNumber(t string) int {
 	return int(i)
 }
 
-func loadFromText(url, path, match string) (text string) {
-	if path == "" {
-		return "0"
+func loadRegion(r caseRegion) (num int) {
+	if r.Selector == "" {
+		return -1
 	}
 	c := colly.NewCollector()
 	c.OnHTML("body", func(e *colly.HTMLElement) {
-		re := regexp.MustCompile(match)
-		t := re.FindStringSubmatch(e.DOM.Find(path).First().Text())
-		text = t[1]
+		re := regexp.MustCompile(r.Match)
+		var t []string
+		e.DOM.Find(r.Selector).EachWithBreak(func(i int, s *goquery.Selection) bool {
+			t = re.FindStringSubmatch(s.Text())
+			return len(t) == 0 // i. e. no submatch found
+		})
+		if len(t) == 0 {
+			panic("Konnte nichts matchen in " + r.URL)
+		}
+		num = toNumber(t[1])
 	})
-	c.Visit(url)
+	c.Visit(r.URL)
 	return
-}
-
-func loadRegion(r caseRegion) int {
-	return toNumber(loadFromText(r.URL, r.Selector, r.Match))
 }
