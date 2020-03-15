@@ -40,7 +40,6 @@ func main() {
 		}
 
 		line = append(line, "<a href=\""+regionData.URL+"\">Quelle</a>")
-		println("append", regionName)
 		rows = append(rows, line)
 	}
 
