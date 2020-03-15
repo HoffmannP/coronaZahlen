@@ -6,13 +6,13 @@ import (
 )
 
 func main() {
-	header := []string{"Bundesland", "Fälle", "RKI", "URL"}
+	header := []string{"Bundesland", "Fälle", "RKI", "Stand"}
 	var rows [][]string
 
 	rki := loadRKI()
 	sum := 0
 
-	regions := updateURLs(regions())
+	regions := regions()
 	var regionNames []string
 	for regionName := range regions {
 		regionNames = append(regionNames, regionName)
@@ -24,26 +24,31 @@ func main() {
 		var line []string
 		line = append(line, regionName)
 
-		casenumber := loadRegion(regionData)
+		casecount, timestamp := loadRegion(regionData)
 		rki := rki.lookup(regionName)
-		if casenumber == -1 {
+		if casecount == -1 {
 			line = append(line, "n/a", strconv.Itoa(rki))
 			sum += rki
 		} else {
-			if casenumber > rki {
-				line = append(line, "<strong>"+strconv.Itoa(casenumber)+"</strong>", strconv.Itoa(rki))
-				sum += casenumber
+			if casecount > rki {
+				line = append(line, "<strong>"+strconv.Itoa(casecount)+"</strong>", strconv.Itoa(rki))
+				sum += casecount
 			} else {
-				line = append(line, strconv.Itoa(casenumber), "<strong>"+strconv.Itoa(rki)+"</strong>")
+				line = append(line, strconv.Itoa(casecount), "<strong>"+strconv.Itoa(rki)+"</strong>")
 				sum += rki
 			}
 		}
 
-		line = append(line, "<a href=\""+regionData.URL+"\">Quelle</a>")
+		line = append(line, "<a href=\""+regionData.URL+"\">"+timestamp.Format("2.01.2006 15:04")+"</a>")
 		rows = append(rows, line)
 	}
 
-	footer := []string{"Deutschland", strconv.Itoa(sum), strconv.Itoa(rki.lookup("Gesamt")), "<a href=\"" + rki.url + "\">Quelle</a>"}
+	footer := []string{
+		"Deutschland",
+		strconv.Itoa(sum),
+		strconv.Itoa(rki.lookup("Gesamt")),
+		"<a href=\"" + rki.timestamp.Format("2.01.2006 15:04") + "\">Quelle</a>",
+	}
 
 	display(header, rows, footer, "docs/index.html")
 }
