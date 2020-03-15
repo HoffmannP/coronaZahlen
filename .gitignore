@@ -1,6 +1,2 @@
-coronaBlog
-setConfig.go
-status.json
-coronaBlog.code-workspace
-old
-coronaZahlen
+/coronaZahlen
+*.code-*
