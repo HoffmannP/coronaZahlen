@@ -3,11 +3,17 @@ package main
 import (
 	"sort"
 	"strconv"
+	"time"
 )
+
+func blass(t string) string {
+	return "<span class=\"blass\">" + t + "</span>"
+}
 
 func main() {
 	rki := loadRKI()
 	sum := 0
+	json := newJSON("CoronaCountsGermany")
 
 	header := []string{"Bundesland", "Fälle", "<a href=\"" + rki.url + "\">RKI</a>", "Stand"}
 	var rows [][]string
@@ -33,10 +39,10 @@ func main() {
 		} else {
 			switch {
 			case casecount > rki:
-				line = append(line, strconv.Itoa(casecount), "<span class=\"blass\">"+strconv.Itoa(rki)+"</span>")
+				line = append(line, strconv.Itoa(casecount), blass(strconv.Itoa(rki)))
 				sum += casecount
 			case rki > casecount:
-				line = append(line, "<span class=\"blass\">"+strconv.Itoa(casecount)+"</span>", strconv.Itoa(rki))
+				line = append(line, blass(strconv.Itoa(casecount)), strconv.Itoa(rki))
 				sum += casecount
 			default:
 				line = append(line, strconv.Itoa(casecount), strconv.Itoa(rki))
@@ -46,14 +52,19 @@ func main() {
 
 		line = append(line, timestamp.Format("2.01.2006 15:04 Uhr"))
 		rows = append(rows, line)
+		json.append(regionName, regionData.URL, timestamp, casecount, rki)
 	}
 
+	gesamtRki := rki.lookup("Gesamt")
 	footer := []string{
 		"Deutschland",
 		strconv.Itoa(sum),
-		strconv.Itoa(rki.lookup("Gesamt")),
+		strconv.Itoa(gesamtRki),
 		rki.timestamp.Format("RKI: 2.01.2006 15:04 Uhr "),
 	}
+	json.append("Deutschland", "https://hoffis-eck.de/coronaZahlen/"+json.getName()+".json", time.Now(), sum, gesamtRki)
 
-	display(header, rows, footer, "docs/index.html")
+	saveHTML(header, rows, footer, json.getName(), "docs/index.html")
+	json.save("docs/")
+
 }

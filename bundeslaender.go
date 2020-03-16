@@ -65,15 +65,15 @@ func regions() caseRegions {
 			},
 		},
 		"Bremen": {
-			URL:       "https://www.gesundheit.bremen.de/sixcms/detail.php?gsid=bremen229.c.32657.de",
+			URL:       "https://www.gesundheit.bremen.de/",
 			Listentry: position{"", ""},
 			Casecount: position{
-				Selector: "#main > div:nth-child(3) > div",
-				Match:    ` ([.\d]+) als positiv gemeldete`,
+				Selector: ".news_bigteaser > p",
+				Match:    ` ([.\d]+) als positiv`,
 			},
 			Timestamp: position{
-				Selector: "#main > div:nth-child(3) > div",
-				Match:    " (Stand 2.1.2006).",
+				Selector: ".news_bigteaser > p",
+				Match:    "(Stand 2.1.2006)",
 			},
 		},
 		"Hamburg": {
@@ -93,7 +93,7 @@ func regions() caseRegions {
 			Listentry: position{"", ""},
 			Casecount: position{
 				Selector: "section:nth-child(2) > .block-inner > .blockContent",
-				Match:    `insgesamt ([.\d]+) SARS-CoV-2-Fälle`,
+				Match:    `insgesamt ([.\d]+).SARS-CoV-2-Fälle`,
 			},
 			Timestamp: position{
 				Selector: "section:nth-child(2) > .block-inner > .blockContent",
@@ -144,7 +144,7 @@ func regions() caseRegions {
 			Listentry: position{"", ""},
 			Casecount: position{
 				Selector: ".links > .textpic-content > .small-12 > p",
-				Match:    `insgesamt ([.\d]+) bestätigte`,
+				Match:    `insgesamt ([.\d]+).bestätigte`,
 			},
 			Timestamp: position{
 				Selector: ".links > .textpic-content > .small-12 > p",
@@ -167,7 +167,7 @@ func regions() caseRegions {
 			URL:       "https://www.sms.sachsen.de/coronavirus.html",
 			Listentry: position{"", ""},
 			Casecount: position{
-				Selector: "table > tbody > tr:last-child > td:last-child > strong",
+				Selector: "table > tbody > tr:last-child > td:nth-child(2) > strong",
 				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
@@ -182,8 +182,8 @@ func regions() caseRegions {
 				"",
 			},
 			Casecount: position{
-				Selector: ".pm_titel",
-				Match:    `steigt auf ([.\d]+)`,
+				Selector: "table > tbody > tr:last-child > td:last-child",
+				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
 				Selector: ".pm_datum",
@@ -206,7 +206,7 @@ func regions() caseRegions {
 			URL:       "https://www.tmasgff.de/covid-19",
 			Listentry: position{"", ""},
 			Casecount: position{
-				Selector: "h3",
+				Selector: "",
 				Match:    `([.\d]+) bestätigte Infektionen`,
 			},
 			Timestamp: position{

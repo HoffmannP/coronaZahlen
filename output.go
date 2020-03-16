@@ -11,9 +11,10 @@ type table struct {
 	Rows   [][]string
 	Footer []string
 	Date   string
+	JSON   string
 }
 
-func display(header []string, rows [][]string, footer []string, file string) {
+func saveHTML(header []string, rows [][]string, footer []string, json string, file string) {
 	t, err := template.ParseFiles("template.html")
 	if err != nil {
 		panic(err)
@@ -27,6 +28,7 @@ func display(header []string, rows [][]string, footer []string, file string) {
 		Rows:   rows,
 		Footer: footer,
 		Date:   time.Now().Format("2.01.2006 15:04"),
+		JSON:   json,
 	})
 	if err != nil {
 		panic(err)

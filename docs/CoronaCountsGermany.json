@@ -1,0 +1,104 @@
+{
+  "Baden-Württemberg": {
+    "URL": "https://sozialministerium.baden-wuerttemberg.de/de/gesundheit-pflege/gesundheitsschutz/infektionsschutz-hygiene/informationen-zu-coronavirus/",
+    "Timestamp": 1584316800,
+    "Count": 977,
+    "RKI": 827
+  },
+  "Bayern": {
+    "URL": "https://www.lgl.bayern.de/gesundheit/infektionsschutz/infektionskrankheiten_a_z/coronavirus/karte_coronavirus/index.htm",
+    "Timestamp": 1584360000,
+    "Count": 1067,
+    "RKI": 886
+  },
+  "Berlin": {
+    "URL": "https://www.berlin.de/sen/gpg/service/presse/",
+    "Timestamp": 1584230400,
+    "Count": 283,
+    "RKI": 265
+  },
+  "Brandenburg": {
+    "URL": "https://msgiv.brandenburg.de/msgiv/de/start/",
+    "Timestamp": 1584288000,
+    "Count": 84,
+    "RKI": 84
+  },
+  "Bremen": {
+    "URL": "https://www.gesundheit.bremen.de/",
+    "Timestamp": 1584230400,
+    "Count": 56,
+    "RKI": 53
+  },
+  "Deutschland": {
+    "URL": "https://hoffis-eck.de/coronaZahlen/CoronaCountsGermany.json",
+    "Timestamp": 1584372486,
+    "Count": 6649,
+    "RKI": 4838
+  },
+  "Hamburg": {
+    "URL": "https://www.hamburg.de/coronavirus/",
+    "Timestamp": 1584316800,
+    "Count": 260,
+    "RKI": 162
+  },
+  "Hessen": {
+    "URL": "https://soziales.hessen.de/gesundheit/infektionsschutz/coronavirus-sars-cov-2",
+    "Timestamp": 1584316800,
+    "Count": 342,
+    "RKI": 286
+  },
+  "Mecklenburg-Vorpommern": {
+    "URL": "https://www.regierung-mv.de/Landesregierung/wm/Aktuell/?id=158514\u0026processor=processor.sa.pressemitteilung",
+    "Timestamp": 1584230400,
+    "Count": 50,
+    "RKI": 50
+  },
+  "Niedersachsen": {
+    "URL": "https://www.niedersachsen.de/Coronavirus",
+    "Timestamp": 1584284400,
+    "Count": 287,
+    "RKI": 287
+  },
+  "Nordrhein-Westfalen": {
+    "URL": "https://www.mags.nrw/coronavirus-fallzahlen-nrw",
+    "Timestamp": 1584352800,
+    "Count": 2493,
+    "RKI": 1407
+  },
+  "Rheinland-Pfalz": {
+    "URL": "https://msagd.rlp.de/de/unsere-themen/gesundheit-und-pflege/gesundheitliche-versorgung/oeffentlicher-gesundheitsdienst-hygiene-und-infektionsschutz/infektionsschutz/informationen-zum-coronavirus-sars-cov-2/",
+    "Timestamp": 1584356400,
+    "Count": 297,
+    "RKI": 168
+  },
+  "Saarland": {
+    "URL": "https://www.saarland.de/SID-C29AF463-5CFEAE1B/253741.htm",
+    "Timestamp": 1584372300,
+    "Count": 85,
+    "RKI": 32
+  },
+  "Sachsen": {
+    "URL": "https://www.sms.sachsen.de/coronavirus.html",
+    "Timestamp": 1584345600,
+    "Count": 134,
+    "RKI": 130
+  },
+  "Sachsen-Anhalt": {
+    "URL": "http://www.presse.sachsen-anhalt.de/index.php?cmd=get\u0026id=909257\u0026identifier=5bf1819066fe8b9aa1d51c89b399a4d3",
+    "Timestamp": 1584316800,
+    "Count": 60,
+    "RKI": 47
+  },
+  "Schleswig-Holstein": {
+    "URL": "https://www.schleswig-holstein.de/DE/Landesregierung/I/Presse/_documents/Corona-Liste_Kreise.html",
+    "Timestamp": 1584316800,
+    "Count": 123,
+    "RKI": 103
+  },
+  "Thüringen": {
+    "URL": "https://www.tmasgff.de/covid-19",
+    "Timestamp": 0,
+    "Count": -1,
+    "RKI": 51
+  }
+}
