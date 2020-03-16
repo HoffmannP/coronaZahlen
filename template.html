@@ -38,7 +38,7 @@
         <p>
             Die Fallzahlen sind aus den Homepages (z.T. Pressemitteilungen) der Bundesländer zusammengetragen.
             Die Gesamtzahl ist die Summe der für jedes Bundesland jeweils höheren Fallzahl (<abbr title="Robert-Koch-Institut">RKI</abbr>
-            bzw. Bundesland) in der Hoffnung, damit die aktuellsten Zahl anzuzeigen. (Stand:&nbsp;{{.Date}})
+            bzw. Bundesland) in der Hoffnung, damit die aktuellsten Zahl anzuzeigen. (Stand:&nbsp;{{.Date | timestamp}})
         </p>
         
         <table class="u-full-width">
@@ -53,7 +53,7 @@
                 <tbody>
                 {{range $name, $data := .Regions}}
         			<tr>
-                        <td>{{$name}}</td>
+                        <td><a href="{{$data.URL}}">{{$name}}</a></td>
                         <td {{ lt $data.Count $data.RKI | blass }}>{{$data.Count | isAvailable}}</td>
                         <td {{ gt $data.Count $data.RKI | blass }}>{{$data.RKI}}</td>
                         <td>{{$data.Date | timestamp}}</td>
@@ -64,8 +64,8 @@
         			<tr>
                         <th>Deutschland</th>
                         <th>{{.Sum}}</th>
-                        <th>{{.RKI.Count}}</th>
-                        <th>RKI: {{.RKI.Date | timestamp}}</th>
+                        <td>{{.RKI.Count}}</td>
+                        <td>RKI: {{.RKI.Date | timestamp}}</td>
                     </tr>
                 </tfoot>
         </table>

@@ -1,11 +1,10 @@
 {
   "Name": "CoronaCountsGermany",
-  "Date": 1584395091,
+  "Date": 1584396900,
   "RKI": {
     "URL": "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html",
     "Date": 1584370800,
-    "Count": 6012,
-    "RKI": 6012
+    "Count": 6012
   },
   "Regions": {
     "Baden-Württemberg": {
