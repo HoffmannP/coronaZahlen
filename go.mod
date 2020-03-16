@@ -12,4 +12,5 @@ require (
 	github.com/golang/protobuf v1.3.5 // indirect
 	golang.org/x/net v0.0.0-20200301022130-244492dfa37a // indirect
 	google.golang.org/appengine v1.6.5 // indirect
+	github.com/goodsign/monday v1.0.0
 )

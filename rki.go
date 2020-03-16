@@ -21,12 +21,12 @@ func cellFirstNumber(row *goquery.Selection, number int) int {
 func loadRKI() (r rki) {
 	c := colly.NewCollector()
 	r.url = "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html"
-	c.OnHTML("table", func(e *colly.HTMLElement) {
-		r.table = e.DOM
-	})
-	c.OnHTML(".text > p.null", func(e *colly.HTMLElement) {
-		// Stand: 14.3.2020, 15:00 Uhr (online aktualisiert um 20:00 Uhr)
-		r.timestamp = toDate(e.DOM.Text())
+	c.OnHTML("#main > .text", func(e *colly.HTMLElement) {
+		r.table = e.DOM.Find("table")
+		r.timestamp = position{
+			"p.null",
+			"Stand: 2.1.2006, 15:04 Uhr",
+		}.grabDate(e)
 	})
 	c.Visit(r.url)
 	return

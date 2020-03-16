@@ -18,7 +18,7 @@ func display(header []string, rows [][]string, footer []string, file string) {
 	if err != nil {
 		panic(err)
 	}
-	f, err := os.OpenFile(file, os.O_WRONLY|os.O_CREATE, 0644)
+	f, err := os.OpenFile(file, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
 	if err != nil {
 		panic(err)
 	}
