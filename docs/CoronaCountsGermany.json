@@ -1,6 +1,6 @@
 {
   "Name": "CoronaCountsGermany",
-  "Date": 1584396900,
+  "Date": 1584397004,
   "RKI": {
     "URL": "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html",
     "Date": 1584370800,
@@ -45,8 +45,8 @@
     },
     "Hessen": {
       "URL": "https://soziales.hessen.de/gesundheit/infektionsschutz/coronavirus-sars-cov-2",
-      "Date": 0,
-      "Count": -1,
+      "Date": 1584316800,
+      "Count": 342,
       "RKI": 342
     },
     "Mecklenburg-Vorpommern": {
