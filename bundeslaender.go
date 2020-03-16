@@ -124,7 +124,7 @@ func regions() caseRegions {
 			},
 			Timestamp: position{
 				Selector: ".maincontent > .content > .complementary > div > div > div > p > i",
-				Match:    "aktualisiert am 2.01.2006, 15 Uhr",
+				Match:    "aktualisiert am 2.01.2006, 15.04 Uhr",
 			},
 		},
 		"Nordrhein-Westfalen": {
@@ -203,15 +203,15 @@ func regions() caseRegions {
 			},
 		},
 		"Thüringen": {
-			URL:       "https://www.tmasgff.de/covid-19",
+			URL:       "https://www.landesregierung-thueringen.de/corona-bulletin",
 			Listentry: position{"", ""},
 			Casecount: position{
-				Selector: "",
-				Match:    `([.\d]+) bestätigte Infektionen`,
+				Selector: "table:first-of-type > tbody > tr:nth-child(2) > td:last-child",
+				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
 				Selector: "h3",
-				Match:    "(Stand 2.01.2006 - 15:04 Uhr)",
+				Match:    "Stand: 2. January 2006, 15 Uhr",
 			},
 		},
 	}

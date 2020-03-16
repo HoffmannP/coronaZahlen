@@ -2,7 +2,7 @@
   "Baden-Württemberg": {
     "URL": "https://sozialministerium.baden-wuerttemberg.de/de/gesundheit-pflege/gesundheitsschutz/infektionsschutz-hygiene/informationen-zu-coronavirus/",
     "Timestamp": 1584316800,
-    "Count": 977,
+    "Count": 1105,
     "RKI": 827
   },
   "Bayern": {
@@ -31,8 +31,8 @@
   },
   "Deutschland": {
     "URL": "https://hoffis-eck.de/coronaZahlen/CoronaCountsGermany.json",
-    "Timestamp": 1584372486,
-    "Count": 6649,
+    "Timestamp": 1584376408,
+    "Count": 6836,
     "RKI": 4838
   },
   "Hamburg": {
@@ -48,15 +48,15 @@
     "RKI": 286
   },
   "Mecklenburg-Vorpommern": {
-    "URL": "https://www.regierung-mv.de/Landesregierung/wm/Aktuell/?id=158514\u0026processor=processor.sa.pressemitteilung",
-    "Timestamp": 1584230400,
-    "Count": 50,
+    "URL": "https://www.regierung-mv.de/Landesregierung/wm/Aktuell/?id=158549\u0026processor=processor.sa.pressemitteilung",
+    "Timestamp": 1584316800,
+    "Count": 51,
     "RKI": 50
   },
   "Niedersachsen": {
     "URL": "https://www.niedersachsen.de/Coronavirus",
-    "Timestamp": 1584284400,
-    "Count": 287,
+    "Timestamp": 1584372600,
+    "Count": 391,
     "RKI": 287
   },
   "Nordrhein-Westfalen": {
@@ -73,20 +73,20 @@
   },
   "Saarland": {
     "URL": "https://www.saarland.de/SID-C29AF463-5CFEAE1B/253741.htm",
-    "Timestamp": 1584372300,
-    "Count": 85,
+    "Timestamp": -62135596800,
+    "Count": 0,
     "RKI": 32
   },
   "Sachsen": {
     "URL": "https://www.sms.sachsen.de/coronavirus.html",
-    "Timestamp": 1584345600,
-    "Count": 134,
+    "Timestamp": 1584374400,
+    "Count": 152,
     "RKI": 130
   },
   "Sachsen-Anhalt": {
-    "URL": "http://www.presse.sachsen-anhalt.de/index.php?cmd=get\u0026id=909257\u0026identifier=5bf1819066fe8b9aa1d51c89b399a4d3",
+    "URL": "http://www.presse.sachsen-anhalt.de/index.php?cmd=get\u0026id=909276\u0026identifier=0be6b3e25b0c8897c7d93ebc22228b72",
     "Timestamp": 1584316800,
-    "Count": 60,
+    "Count": 77,
     "RKI": 47
   },
   "Schleswig-Holstein": {
@@ -96,9 +96,9 @@
     "RKI": 103
   },
   "Thüringen": {
-    "URL": "https://www.tmasgff.de/covid-19",
-    "Timestamp": 0,
-    "Count": -1,
+    "URL": "https://www.landesregierung-thueringen.de/corona-bulletin",
+    "Timestamp": 1584356400,
+    "Count": 55,
     "RKI": 51
   }
 }
