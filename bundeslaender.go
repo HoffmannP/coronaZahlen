@@ -92,7 +92,7 @@ func regions() caseRegions {
 			URL:       "https://soziales.hessen.de/gesundheit/infektionsschutz/coronavirus-sars-cov-2",
 			Listentry: position{"", ""},
 			Casecount: position{
-				Selector: "section:nth-child(2) > .block-inner > .blockContent",
+				Selector: "", // "section:nth-child(2) > .block-inner > .blockContent",
 				Match:    `insgesamt ([.\d]+).SARS-CoV-2-Fälle`,
 			},
 			Timestamp: position{

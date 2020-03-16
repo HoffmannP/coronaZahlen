@@ -1,5 +1,6 @@
 * Export in Pages-branch
-* Upload auf GitHub
-* Automatische Release
+* Umstellung Github Pages
+* Nur Updaten
 * Regelmäßig ausführen
 * Anfragen parallel ausführen
+* Automatische Release der Binary
