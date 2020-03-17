@@ -52,16 +52,17 @@ func toNumber(t string) int {
 }
 
 func (p position) grabDate(e *colly.HTMLElement) time.Time {
-	parse := p.Match
+	layout := p.Match
 	p.Match = parseToRegexp(regexp.QuoteMeta(p.Match))
-	return toDate(grab(e, p), parse)
+	return toDate(grab(e, p), layout)
 }
 
-func toDate(ts, p string) time.Time {
+func toDate(ts, layout string) time.Time {
 	if ts == "" {
 		return time.Unix(0, 0)
 	}
-	t, err := monday.Parse(p, ts, "de_DE")
+	tz, _ := time.LoadLocation("Europe/Berlin")
+	t, err := monday.ParseInLocation(layout, ts, "de_DE", tz)
 	if err != nil {
 		errorHandler(ts, err)
 	}
