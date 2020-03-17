@@ -107,12 +107,12 @@ func regions() caseRegions {
 				Match:    "https://www.regierung-mv.de",
 			},
 			Casecount: position{
-				Selector: ".dvz-contenttype-presseserviceassistent",
-				Match:    `Insgesamt wurden bislang ([.\d]+) Menschen`,
+				Selector: "table > tbody > tr:last-child > td:nth-child(3)",
+				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
-				Selector: ".dtstart",
-				Match:    "2.01.2006",
+				Selector: "table > tbody > tr:first-child > td:nth-child(3)",
+				Match:    "2.01. 15:04",
 			},
 		},
 		"Niedersachsen": {
