@@ -35,29 +35,46 @@
     <div class="container">
         <h1>Fallzahlen Corona Deutschlandweit</h1>
 
-        <p>Die Fallzahlen sind aus den Homepages (z.T. Pressemitteilungen) der Bundesländer zusammengetragen. Die Gesamtzahl ist die Summe der für jedes Bundesland jeweils höheren Fallzahl (<abbr title="Robert-Koch-Institut">RKI</abbr> bzw. Bundesland) in der Hoffnung, damit die aktuellsten Zahl anzuzeigen. (Stand:&nbsp;{{.Date}})</p>
+        <p>
+            Die Fallzahlen sind aus den Homepages (z.T. Pressemitteilungen) der Bundesländer zusammengetragen.
+            Die Gesamtzahl ist die Summe der für jedes Bundesland jeweils höheren Fallzahl (<abbr title="Robert-Koch-Institut">RKI</abbr>
+            bzw. Bundesland) in der Hoffnung, damit die aktuellsten Zahl anzuzeigen. (Stand:&nbsp;{{.Date | timestamp}})
+        </p>
         
         <table class="u-full-width">
         		<thead>
-        			<tr>{{range .Header}}
-        				<th>{{.}}</th>
-                    {{end}}</tr>
+        			<tr>
+                        <th>Bundesland</th>
+                        <th>Fälle</th>
+                        <th><a href="{{.RKI.URL}}">RKI</a></th>
+                        <th>Stand</th>
+                    </tr>
                 </thead>
-                <tbody>{{range .Rows}}
-        			<tr>{{range .}}
-                        <td>{{.}}</td>
-                    {{end}}</tr>
-                {{end}}</tbody>
+                <tbody>
+                {{range $name, $data := .Regions}}
+        			<tr>
+                        <td><a href="{{$data.URL}}">{{$name}}</a></td>
+                        <td {{ lt $data.Count $data.RKI | blass }}>{{$data.Count | isAvailable}}</td>
+                        <td {{ gt $data.Count $data.RKI | blass }}>{{$data.RKI}}</td>
+                        <td>{{$data.Date | timestamp}}</td>
+                    </tr>
+                {{end}}
+                </tbody>
                 <tfoot>
-        			<tr>{{range .Footer}}
-                        <th>{{.}}</th>
-                    {{end}}</tr>
+        			<tr>
+                        <th>Deutschland</th>
+                        <th>{{.Sum}}</th>
+                        <td>{{.RKI.Count}}</td>
+                        <td>RKI: {{.RKI.Date | timestamp}}</td>
+                    </tr>
                 </tfoot>
         </table>
 
         <p>
             Diese Website ist ein <a href="https://twitter.com/Hoffmann">privates</a> Projekt. Der Quellcode steht unter der GPLv3 und ist auf
             <a href="https://github.com/HoffmannP/coronaZahlen">Github</a> zu finden, ebenso wie die
-            <a href="https://github.com/HoffmannP/coronaZahlen/releases">Binary</a>. Die Rohdaten sind separat im json-Format <a href="{{.JSON}}.json">downloadbar</a>.</p>
+            <a href="https://github.com/HoffmannP/coronaZahlen/releases">Binary</a>. Die Rohdaten sind separat im json-Format
+            <a href="{{.Name}}.json">downloadbar</a>.
+        </p>
     </div>
 </body>

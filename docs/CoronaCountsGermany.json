@@ -1,104 +1,145 @@
 {
-  "Baden-Württemberg": {
-    "URL": "https://sozialministerium.baden-wuerttemberg.de/de/gesundheit-pflege/gesundheitsschutz/infektionsschutz-hygiene/informationen-zu-coronavirus/",
-    "Timestamp": 1584403200,
-    "Count": 1105,
-    "RKI": 1105
+  "Name": "CoronaCountsGermany",
+  "Date": 1584455289,
+  "RKI": {
+    "URL": "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html",
+    "Date": 1584367200,
+    "Count": 6012
   },
-  "Bayern": {
-    "URL": "https://www.lgl.bayern.de/gesundheit/infektionsschutz/infektionskrankheiten_a_z/coronavirus/karte_coronavirus/index.htm",
-    "Timestamp": 1584360000,
-    "Count": 1067,
-    "RKI": 1067
+  "Mopo": {
+    "URL": "https://interaktiv.morgenpost.de/corona-virus-karte-infektionen-deutschland-weltweit/data/Coronavirus.current.v2.csv?-62135596800",
+    "Date": 1584446400,
+    "Count": -1
   },
-  "Berlin": {
-    "URL": "https://www.berlin.de/sen/gpg/service/presse/",
-    "Timestamp": 1584316800,
-    "Count": 332,
-    "RKI": 300
+  "Regions": {
+    "Baden-Württemberg": {
+      "URL": "https://sozialministerium.baden-wuerttemberg.de/de/gesundheit-pflege/gesundheitsschutz/infektionsschutz-hygiene/informationen-zu-coronavirus/",
+      "Date": 1584399600,
+      "Count": 1105,
+      "RKI": 1105,
+      "Mopo": 1105,
+      "Max": 1105
+    },
+    "Bayern": {
+      "URL": "https://www.lgl.bayern.de/gesundheit/infektionsschutz/infektionskrankheiten_a_z/coronavirus/karte_coronavirus/index.htm",
+      "Date": 1584442800,
+      "Count": 1352,
+      "RKI": 1067,
+      "Mopo": 1352,
+      "Max": 1352
+    },
+    "Berlin": {
+      "URL": "https://www.berlin.de/sen/gpg/service/presse/",
+      "Date": 1584399600,
+      "Count": 332,
+      "RKI": 300,
+      "Mopo": 332,
+      "Max": 332
+    },
+    "Brandenburg": {
+      "URL": "https://msgiv.brandenburg.de/msgiv/de/start/",
+      "Date": 1584370800,
+      "Count": 94,
+      "RKI": 94,
+      "Mopo": 104,
+      "Max": 104
+    },
+    "Bremen": {
+      "URL": "https://www.gesundheit.bremen.de/",
+      "Date": 1584313200,
+      "Count": 57,
+      "RKI": 56,
+      "Mopo": 57,
+      "Max": 57
+    },
+    "Hamburg": {
+      "URL": "https://www.hamburg.de/coronavirus/",
+      "Date": 1584399600,
+      "Count": 312,
+      "RKI": 260,
+      "Mopo": 312,
+      "Max": 312
+    },
+    "Hessen": {
+      "URL": "https://soziales.hessen.de/gesundheit/infektionsschutz/coronavirus-sars-cov-2",
+      "Date": 1584313200,
+      "Count": 342,
+      "RKI": 342,
+      "Mopo": 342,
+      "Max": 342
+    },
+    "Mecklenburg-Vorpommern": {
+      "URL": "https://www.regierung-mv.de/Landesregierung/wm/Aktuell/?id=158549\u0026processor=processor.sa.pressemitteilung",
+      "Date": 1584367200,
+      "Count": 51,
+      "RKI": 51,
+      "Mopo": 51,
+      "Max": 51
+    },
+    "Niedersachsen": {
+      "URL": "https://www.niedersachsen.de/Coronavirus",
+      "Date": 1584369000,
+      "Count": 391,
+      "RKI": 391,
+      "Mopo": 392,
+      "Max": 392
+    },
+    "Nordrhein-Westfalen": {
+      "URL": "https://www.mags.nrw/coronavirus-fallzahlen-nrw",
+      "Date": 1584434700,
+      "Count": 3060,
+      "RKI": 1541,
+      "Mopo": 3060,
+      "Max": 3060
+    },
+    "Rheinland-Pfalz": {
+      "URL": "https://msagd.rlp.de/de/unsere-themen/gesundheit-und-pflege/gesundheitliche-versorgung/oeffentlicher-gesundheitsdienst-hygiene-und-infektionsschutz/infektionsschutz/informationen-zum-coronavirus-sars-cov-2/",
+      "Date": 1584439200,
+      "Count": 435,
+      "RKI": 325,
+      "Mopo": 435,
+      "Max": 435
+    },
+    "Saarland": {
+      "URL": "https://www.saarland.de/SID-C29AF463-5CFEAE1B/253741.htm",
+      "Date": 1584368700,
+      "Count": 85,
+      "RKI": 85,
+      "Mopo": 85,
+      "Max": 85
+    },
+    "Sachsen": {
+      "URL": "https://www.sms.sachsen.de/coronavirus.html",
+      "Date": 1584428400,
+      "Count": 152,
+      "RKI": 140,
+      "Mopo": 152,
+      "Max": 152
+    },
+    "Sachsen-Anhalt": {
+      "URL": "http://www.presse.sachsen-anhalt.de/index.php?cmd=get\u0026id=909283\u0026identifier=c38befbc188993e7493f743e2dd32141",
+      "Date": 1584399600,
+      "Count": 93,
+      "RKI": 77,
+      "Mopo": 93,
+      "Max": 93
+    },
+    "Schleswig-Holstein": {
+      "URL": "https://www.schleswig-holstein.de/DE/Landesregierung/I/Presse/_documents/Corona-Liste_Kreise.html",
+      "Date": 1584399600,
+      "Count": 145,
+      "RKI": 123,
+      "Mopo": 145,
+      "Max": 145
+    },
+    "Thüringen": {
+      "URL": "https://www.landesregierung-thueringen.de/corona-bulletin",
+      "Date": 1584352800,
+      "Count": 55,
+      "RKI": 55,
+      "Mopo": 67,
+      "Max": 67
+    }
   },
-  "Brandenburg": {
-    "URL": "https://msgiv.brandenburg.de/msgiv/de/start/",
-    "Timestamp": 1584374400,
-    "Count": 94,
-    "RKI": 94
-  },
-  "Bremen": {
-    "URL": "https://www.gesundheit.bremen.de/",
-    "Timestamp": 1584316800,
-    "Count": 57,
-    "RKI": 56
-  },
-  "Deutschland": {
-    "URL": "https://hoffis-eck.de/coronaZahlen/CoronaCountsGermany.json",
-    "Timestamp": 1584435885,
-    "Count": 6896,
-    "RKI": 6012
-  },
-  "Hamburg": {
-    "URL": "https://www.hamburg.de/coronavirus/",
-    "Timestamp": 1584316800,
-    "Count": 260,
-    "RKI": 260
-  },
-  "Hessen": {
-    "URL": "https://soziales.hessen.de/gesundheit/infektionsschutz/coronavirus-sars-cov-2",
-    "Timestamp": 1584316800,
-    "Count": 342,
-    "RKI": 342
-  },
-  "Mecklenburg-Vorpommern": {
-    "URL": "https://www.regierung-mv.de/Landesregierung/wm/Aktuell/?id=158549\u0026processor=processor.sa.pressemitteilung",
-    "Timestamp": 1584370800,
-    "Count": 51,
-    "RKI": 51
-  },
-  "Niedersachsen": {
-    "URL": "https://www.niedersachsen.de/Coronavirus",
-    "Timestamp": 1584372600,
-    "Count": 391,
-    "RKI": 391
-  },
-  "Nordrhein-Westfalen": {
-    "URL": "https://www.mags.nrw/coronavirus-fallzahlen-nrw",
-    "Timestamp": 1584352800,
-    "Count": 2493,
-    "RKI": 1541
-  },
-  "Rheinland-Pfalz": {
-    "URL": "https://msagd.rlp.de/de/unsere-themen/gesundheit-und-pflege/gesundheitliche-versorgung/oeffentlicher-gesundheitsdienst-hygiene-und-infektionsschutz/infektionsschutz/informationen-zum-coronavirus-sars-cov-2/",
-    "Timestamp": 1584356400,
-    "Count": 297,
-    "RKI": 325
-  },
-  "Saarland": {
-    "URL": "https://www.saarland.de/SID-C29AF463-5CFEAE1B/253741.htm",
-    "Timestamp": -62135596800,
-    "Count": 0,
-    "RKI": 85
-  },
-  "Sachsen": {
-    "URL": "https://www.sms.sachsen.de/coronavirus.html",
-    "Timestamp": 1584374400,
-    "Count": 152,
-    "RKI": 140
-  },
-  "Sachsen-Anhalt": {
-    "URL": "http://www.presse.sachsen-anhalt.de/index.php?cmd=get\u0026id=909276\u0026identifier=0be6b3e25b0c8897c7d93ebc22228b72",
-    "Timestamp": 1584316800,
-    "Count": 77,
-    "RKI": 77
-  },
-  "Schleswig-Holstein": {
-    "URL": "https://www.schleswig-holstein.de/DE/Landesregierung/I/Presse/_documents/Corona-Liste_Kreise.html",
-    "Timestamp": 1584316800,
-    "Count": 123,
-    "RKI": 123
-  },
-  "Thüringen": {
-    "URL": "https://www.landesregierung-thueringen.de/corona-bulletin",
-    "Timestamp": 1584356400,
-    "Count": 55,
-    "RKI": 55
-  }
+  "Sum": 8061
 }

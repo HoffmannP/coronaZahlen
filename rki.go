@@ -8,7 +8,7 @@ import (
 	"github.com/gocolly/colly/v2"
 )
 
-type rki struct {
+type rkiType struct {
 	table     *goquery.Selection
 	timestamp time.Time
 	url       string
@@ -18,22 +18,22 @@ func cellFirstNumber(row *goquery.Selection, number int) int {
 	return toNumber(strings.Split(row.Eq(number).Text(), " ")[0])
 }
 
-func loadRKI() (r rki) {
+func loadRKI() (rki rkiType) {
 	c := colly.NewCollector()
-	r.url = "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html"
+	rki.url = "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html"
 	c.OnHTML("#main > .text", func(e *colly.HTMLElement) {
-		r.table = e.DOM.Find("table")
-		r.timestamp = position{
+		rki.table = e.DOM.Find("table")
+		rki.timestamp = position{
 			"p.null",
 			"Stand: 2.1.2006, 15:04 Uhr",
 		}.grabDate(e)
 	})
-	c.Visit(r.url)
+	c.Visit(rki.url)
 	return
 }
 
-func (r rki) lookup(region string) int {
-	row := r.table.Find("tr").FilterFunction(func(i int, tr *goquery.Selection) bool {
+func (rki rkiType) lookup(region string) int {
+	row := rki.table.Find("tr").FilterFunction(func(i int, tr *goquery.Selection) bool {
 		return tr.Find("td:first-child").Text() == region
 	}).First().Find("td")
 	conventional := cellFirstNumber(row, 1)
