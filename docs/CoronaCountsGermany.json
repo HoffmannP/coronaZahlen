@@ -1,145 +1,145 @@
 {
   "Name": "CoronaCountsGermany",
-  "Date": 1584455664,
+  "Date": 1584472417,
   "RKI": {
     "URL": "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html",
-    "Date": 1584367200,
-    "Count": 6012
+    "Date": 1584453600,
+    "Count": 7156
   },
   "Mopo": {
     "URL": "https://interaktiv.morgenpost.de/corona-virus-karte-infektionen-deutschland-weltweit",
-    "Date": 1584446400,
+    "Date": 1584468000,
     "Count": -1
   },
   "Regions": {
     "Baden-Württemberg": {
       "URL": "https://sozialministerium.baden-wuerttemberg.de/de/gesundheit-pflege/gesundheitsschutz/infektionsschutz-hygiene/informationen-zu-coronavirus/",
       "Date": 1584399600,
-      "Count": 1105,
-      "RKI": 1105,
-      "Mopo": 1105,
-      "Max": 1105
+      "Count": 1641,
+      "RKI": 1479,
+      "Mopo": 1641,
+      "Max": 1641
     },
     "Bayern": {
       "URL": "https://www.lgl.bayern.de/gesundheit/infektionsschutz/infektionskrankheiten_a_z/coronavirus/karte_coronavirus/index.htm",
       "Date": 1584442800,
       "Count": 1352,
-      "RKI": 1067,
+      "RKI": 1109,
       "Mopo": 1352,
       "Max": 1352
     },
     "Berlin": {
       "URL": "https://www.berlin.de/sen/gpg/service/presse/",
       "Date": 1584399600,
-      "Count": 332,
-      "RKI": 300,
-      "Mopo": 332,
-      "Max": 332
+      "Count": 383,
+      "RKI": 345,
+      "Mopo": 383,
+      "Max": 383
     },
     "Brandenburg": {
       "URL": "https://msgiv.brandenburg.de/msgiv/de/start/",
       "Date": 1584370800,
       "Count": 94,
-      "RKI": 94,
-      "Mopo": 104,
-      "Max": 104
+      "RKI": 73,
+      "Mopo": 114,
+      "Max": 114
     },
     "Bremen": {
       "URL": "https://www.gesundheit.bremen.de/",
       "Date": 1584313200,
       "Count": 57,
-      "RKI": 56,
-      "Mopo": 57,
-      "Max": 57
+      "RKI": 57,
+      "Mopo": 66,
+      "Max": 66
     },
     "Hamburg": {
       "URL": "https://www.hamburg.de/coronavirus/",
       "Date": 1584399600,
       "Count": 312,
-      "RKI": 260,
+      "RKI": 310,
       "Mopo": 312,
       "Max": 312
     },
     "Hessen": {
       "URL": "https://soziales.hessen.de/gesundheit/infektionsschutz/coronavirus-sars-cov-2",
-      "Date": 1584313200,
-      "Count": 342,
-      "RKI": 342,
-      "Mopo": 342,
-      "Max": 342
+      "Date": 1584399600,
+      "Count": 381,
+      "RKI": 373,
+      "Mopo": 373,
+      "Max": 381
     },
     "Mecklenburg-Vorpommern": {
       "URL": "https://www.regierung-mv.de/Landesregierung/wm/Aktuell/?id=158549\u0026processor=processor.sa.pressemitteilung",
       "Date": 1584367200,
       "Count": 51,
-      "RKI": 51,
-      "Mopo": 51,
-      "Max": 51
+      "RKI": 45,
+      "Mopo": 69,
+      "Max": 69
     },
     "Niedersachsen": {
       "URL": "https://www.niedersachsen.de/Coronavirus",
-      "Date": 1584369000,
-      "Count": 391,
-      "RKI": 391,
-      "Mopo": 392,
-      "Max": 392
+      "Date": 0,
+      "Count": -1,
+      "RKI": 325,
+      "Mopo": 563,
+      "Max": 563
     },
     "Nordrhein-Westfalen": {
       "URL": "https://www.mags.nrw/coronavirus-fallzahlen-nrw",
       "Date": 1584434700,
       "Count": 3060,
-      "RKI": 1541,
-      "Mopo": 3060,
-      "Max": 3060
+      "RKI": 2105,
+      "Mopo": 3375,
+      "Max": 3375
     },
     "Rheinland-Pfalz": {
       "URL": "https://msagd.rlp.de/de/unsere-themen/gesundheit-und-pflege/gesundheitliche-versorgung/oeffentlicher-gesundheitsdienst-hygiene-und-infektionsschutz/infektionsschutz/informationen-zum-coronavirus-sars-cov-2/",
       "Date": 1584439200,
       "Count": 435,
-      "RKI": 325,
+      "RKI": 442,
       "Mopo": 435,
-      "Max": 435
+      "Max": 442
     },
     "Saarland": {
       "URL": "https://www.saarland.de/SID-C29AF463-5CFEAE1B/253741.htm",
       "Date": 1584368700,
       "Count": 85,
-      "RKI": 85,
-      "Mopo": 85,
-      "Max": 85
+      "RKI": 75,
+      "Mopo": 101,
+      "Max": 101
     },
     "Sachsen": {
       "URL": "https://www.sms.sachsen.de/coronavirus.html",
-      "Date": 1584428400,
-      "Count": 152,
-      "RKI": 140,
-      "Mopo": 152,
-      "Max": 152
+      "Date": 1584457200,
+      "Count": 247,
+      "RKI": 182,
+      "Mopo": 247,
+      "Max": 247
     },
     "Sachsen-Anhalt": {
       "URL": "http://www.presse.sachsen-anhalt.de/index.php?cmd=get\u0026id=909283\u0026identifier=c38befbc188993e7493f743e2dd32141",
       "Date": 1584399600,
       "Count": 93,
-      "RKI": 77,
-      "Mopo": 93,
-      "Max": 93
+      "RKI": 58,
+      "Mopo": 105,
+      "Max": 105
     },
     "Schleswig-Holstein": {
       "URL": "https://www.schleswig-holstein.de/DE/Landesregierung/I/Presse/_documents/Corona-Liste_Kreise.html",
       "Date": 1584399600,
       "Count": 145,
-      "RKI": 123,
+      "RKI": 127,
       "Mopo": 145,
       "Max": 145
     },
     "Thüringen": {
       "URL": "https://www.landesregierung-thueringen.de/corona-bulletin",
-      "Date": 1584352800,
-      "Count": 55,
-      "RKI": 55,
-      "Mopo": 67,
-      "Max": 67
+      "Date": 1584439200,
+      "Count": 71,
+      "RKI": 51,
+      "Mopo": 71,
+      "Max": 71
     }
   },
-  "Sum": 8061
+  "Sum": 8739
 }
