@@ -16,8 +16,7 @@ type mopo struct {
 
 func loadMopo() (m mopo) {
 	c := colly.NewCollector()
-	unix := strconv.Itoa(int(m.timestamp.Unix()))
-	m.url = "https://interaktiv.morgenpost.de/corona-virus-karte-infektionen-deutschland-weltweit/data/Coronavirus.current.v2.csv?" + unix
+	m.url = "https://interaktiv.morgenpost.de/corona-virus-karte-infektionen-deutschland-weltweit"
 	m.table = make(map[string]casecount)
 	date := int64(0)
 	c.OnResponse(func(r *colly.Response) {
@@ -38,7 +37,7 @@ func loadMopo() (m mopo) {
 			}
 		}
 	})
-	c.Visit(m.url)
+	c.Visit(m.url + /data/Coronavirus.current.v2.csv?" + strconv.Itoa(int(m.timestamp.Unix())))
 	m.timestamp = time.Unix(date/1000, 0)
 	return
 }
