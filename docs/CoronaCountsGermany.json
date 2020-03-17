@@ -1,13 +1,13 @@
 {
   "Name": "CoronaCountsGermany",
-  "Date": 1584455289,
+  "Date": 1584455664,
   "RKI": {
     "URL": "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html",
     "Date": 1584367200,
     "Count": 6012
   },
   "Mopo": {
-    "URL": "https://interaktiv.morgenpost.de/corona-virus-karte-infektionen-deutschland-weltweit/data/Coronavirus.current.v2.csv?-62135596800",
+    "URL": "https://interaktiv.morgenpost.de/corona-virus-karte-infektionen-deutschland-weltweit",
     "Date": 1584446400,
     "Count": -1
   },

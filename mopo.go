@@ -37,7 +37,7 @@ func loadMopo() (m mopo) {
 			}
 		}
 	})
-	c.Visit(m.url + /data/Coronavirus.current.v2.csv?" + strconv.Itoa(int(m.timestamp.Unix())))
+	c.Visit(m.url + "/data/Coronavirus.current.v2.csv?" + strconv.Itoa(int(m.timestamp.Unix())))
 	m.timestamp = time.Unix(date/1000, 0)
 	return
 }
