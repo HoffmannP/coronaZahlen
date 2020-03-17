@@ -13,7 +13,6 @@ import (
 )
 
 func parseToRegexp(p string) string {
-
 	p = regexp.MustCompile(`\b(?i)Monday\b`).ReplaceAllLiteralString(p, `%dayofweek%`)
 	p = regexp.MustCompile(`\b0?1\b`).ReplaceAllLiteralString(p, `%month%`)
 	p = regexp.MustCompile(`\b(?i)January\b`).ReplaceAllLiteralString(p, `%monthName%`)
@@ -44,7 +43,7 @@ func toNumber(t string) int {
 		return -1
 	}
 	text := strings.ReplaceAll(t, ".", "")
-	i, err := strconv.ParseInt(text, 10, 0)
+	i, err := strconv.Atoi(text)
 	if err != nil {
 		errorHandler(text, err)
 	}
@@ -62,7 +61,7 @@ func toDate(ts, layout string) time.Time {
 		return time.Unix(0, 0)
 	}
 	tz, _ := time.LoadLocation("Europe/Berlin")
-	t, err := monday.ParseInLocation(layout, ts, "de_DE", tz)
+	t, err := monday.ParseInLocation(layout, ts, tz, "de_DE")
 	if err != nil {
 		errorHandler(ts, err)
 	}
@@ -108,9 +107,14 @@ func (r *caseRegion) loadRegion() (num int, ts time.Time) {
 		return -1, time.Unix(0, 0)
 	}
 	c := colly.NewCollector()
+	c.SetRequestTimeout(15 * 1000000000)
 	c.OnHTML("body", func(e *colly.HTMLElement) {
+
 		num = r.Casecount.grabNumber(e)
 		ts = r.Timestamp.grabDate(e)
+	})
+	c.OnError(func(r *colly.Response, err error) {
+		panic(err)
 	})
 	c.Visit(r.url())
 	return

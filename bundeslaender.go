@@ -36,7 +36,7 @@ func regions() caseRegions {
 				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
-				Selector: ".container > .bildunterschrift",
+				Selector: ".row > div > .bildunterschrift",
 				Match:    "*Stand: 2.01.2006 15:04 Uhr.",
 			},
 		},
@@ -168,7 +168,7 @@ func regions() caseRegions {
 			Listentry: position{"", ""},
 			Casecount: position{
 				Selector: "table > tbody > tr:last-child > td:nth-child(2) > strong",
-				Match:    `([.\d]+)`,
+				Match:    `\(([.\d]+)\)`,
 			},
 			Timestamp: position{
 				Selector: ".text-col > p",

@@ -1,8 +1,9 @@
 package main
 
-func getRegion(regionName string, regionData caseRegion, rki rkiType, j data, sum chan int) {
+func getRegion(regionName string, regionData caseRegion, rki rkiType, m mopo, j data, sum chan int) {
 	casecount, timestamp := regionData.loadRegion()
 	rkicount := rki.lookup(regionName)
+	mopocount := m.lookup(regionName)
 	var summand int
 
 	if casecount == -1 || rkicount > casecount {
@@ -11,7 +12,7 @@ func getRegion(regionName string, regionData caseRegion, rki rkiType, j data, su
 		summand = casecount
 	}
 
-	j.append(regionName, regionData.URL, timestamp, casecount, rkicount)
+	j.append(regionName, regionData.URL, timestamp, casecount, rkicount, mopocount)
 
 	sum <- summand
 }
@@ -25,13 +26,14 @@ func remaing(remaining int, sum *int, next chan int) {
 
 func main() {
 	rki := loadRKI()
+	mopo := loadMopo()
 	sum := 0
-	data := newData("CoronaCountsGermany", rki)
+	data := newData("CoronaCountsGermany", rki, mopo)
 	allRegions := regions()
 	next := make(chan int)
 
 	for regionName, regionData := range allRegions {
-		go getRegion(regionName, regionData, rki, data, next)
+		go getRegion(regionName, regionData, rki, mopo, data, next)
 	}
 	remaing(len(allRegions), &sum, next)
 
