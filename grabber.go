@@ -18,13 +18,15 @@ func parseToRegexp(p string) string {
 	p = regexp.MustCompile(`\b(?i)January\b`).ReplaceAllLiteralString(p, `%monthName%`)
 	p = regexp.MustCompile(`\b0?2\b\b`).ReplaceAllLiteralString(p, `%day%`)
 	p = regexp.MustCompile(`\b15|0?3\b`).ReplaceAllLiteralString(p, `%hour%`)
-	p = regexp.MustCompile(`\b0?4\b`).ReplaceAllLiteralString(p, `%minute%`)
+	p = regexp.MustCompile(`.\b0?4\b`).ReplaceAllLiteralString(p, `%minute%`)
 	p = regexp.MustCompile(`\b(20?)06\b`).ReplaceAllLiteralString(p, `%year%`)
+	p = regexp.QuoteMeta(p)
 	p = regexp.MustCompile(`%dayofweek%`).ReplaceAllLiteralString(p, `\b(?:Mo|Di|Mi|Do|Fr|Sa|So)[[:alpha:]]{0,8}\b`)
 	p = regexp.MustCompile(`%month%`).ReplaceAllLiteralString(p, `\b(?:0?\d|1[012])\b`)
 	p = regexp.MustCompile(`%monthName%`).ReplaceAllLiteralString(p, `\b[[:alpha:]ä]{3,9}\b`)
 	p = regexp.MustCompile(`%day%`).ReplaceAllLiteralString(p, `\b(?:[012]?\d|3[01])\b`)
 	p = regexp.MustCompile(`%hour%`).ReplaceAllLiteralString(p, `\b(?:[01]?\d|2[0-4])\b`)
+	p = regexp.MustCompile(`%minute%`).ReplaceAllLiteralString(p, `(?:.%minute%)?`)
 	p = regexp.MustCompile(`%minute%`).ReplaceAllLiteralString(p, `\b(?:[0-5]?\d|60)\b`)
 	return "(" + regexp.MustCompile(`%year%`).ReplaceAllLiteralString(p, `\b(?:\d\d)?\d\d\b`) + ")"
 }
@@ -52,7 +54,7 @@ func toNumber(t string) int {
 
 func (p position) grabDate(e *colly.HTMLElement) time.Time {
 	layout := p.Match
-	p.Match = parseToRegexp(regexp.QuoteMeta(p.Match))
+	p.Match = parseToRegexp(p.Match)
 	return toDate(grab(e, p), layout)
 }
 
@@ -62,6 +64,14 @@ func toDate(ts, layout string) time.Time {
 	}
 	tz, _ := time.LoadLocation("Europe/Berlin")
 	t, err := monday.ParseInLocation(layout, ts, tz, "de_DE")
+	if err != nil {
+		layout = regexp.MustCompile(`.04`).ReplaceAllLiteralString(layout, "")
+		t, err = monday.ParseInLocation(layout, ts, tz, "de_DE")
+	}
+	if err != nil {
+		layout = regexp.MustCompile(`.04`).ReplaceAllLiteralString(layout, "")
+		t, err = monday.ParseInLocation(layout, ts, tz, "de_DE")
+	}
 	if err != nil {
 		errorHandler(ts, err)
 	}

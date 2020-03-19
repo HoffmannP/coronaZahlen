@@ -107,7 +107,7 @@ func regions() caseRegions {
 				Match:    "https://www.regierung-mv.de",
 			},
 			Casecount: position{
-				Selector: "table > tbody > tr:last-child > td:nth-child(3)",
+				Selector: "", // table > tbody > tr:last-child > td:nth-child(3)",
 				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
@@ -123,7 +123,7 @@ func regions() caseRegions {
 				Match:    ` ([.\d]+)\s+laborbestätigte Covid-19-Fälle`,
 			},
 			Timestamp: position{
-				Selector: ".maincontent > .content > .complementary > div > div > div > p > i",
+				Selector: ".maincontent > .content > .complementary > div",
 				Match:    "aktualisiert am 2.01.2006, 15.04 Uhr",
 			},
 		},

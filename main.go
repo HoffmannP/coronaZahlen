@@ -6,10 +6,13 @@ func getRegion(regionName string, regionData caseRegion, rki rkiType, m mopo, j 
 	mopocount := m.lookup(regionName)
 	var summand int
 
-	if casecount == -1 || rkicount > casecount {
+	if rkicount > casecount {
 		summand = rkicount
 	} else {
 		summand = casecount
+	}
+	if mopocount > summand {
+		summand = mopocount
 	}
 
 	j.append(regionName, regionData.URL, timestamp, casecount, rkicount, mopocount)

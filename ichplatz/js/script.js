@@ -4,23 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(render)
 })
 
-function renderTable (rows) {
-  return rows.map(row => `
-    <tr>
-        <td><a href="${row.URL}">${row.Name}</a></td>
-        <td class="${row.Count < row.Max ? 'blass' : ''}">${isAvailable(row.Count)}</td>
-        <td class="${row.RKI < row.Max ? 'blass' : ''}">${row.RKI}</td>
-        <td class="${row.Mopo < row.Max ? 'blass' : ''}">${row.Mopo}</td>
-        <td>${timestamp(row.Date)}</td>
-    </tr>
-  `).join('\n')
-}
-
 function render (data) {
   if (window.data === undefined) {
     window.data = data
   }
-  window.data.Regions = Object.entries(data.Regions).map(([Name, region], i) => ({ Index: i, Name, ...region }))
+  window.data.Regions = Object.entries(data.Regions).map(([Name, region], i) => ({ Index: i, Name, ...region, Max: Math.max(region.Count, region.RKI, region.Mopo) }))
   window.data.Mopo.Count = window.data.Regions.map(r => r.Mopo).reduce((a, c) => a + c)
   document.querySelector('body').innerHTML = `
     <div class="container">
@@ -28,14 +16,16 @@ function render (data) {
 
         <p>
             Die Fallzahlen sind aus den Homepages (z.T. Pressemitteilungen) der Bundesländer zusammengetragen.
-            Die Gesamtzahl ist die Summe der für jedes Bundesland jeweils höheren Fallzahl (<abbr title="Robert-Koch-Institut">RKI</abbr>
-            bzw. Bundesland) in der Hoffnung, damit die aktuellsten Zahl anzuzeigen. (Stand:&nbsp;${timestamp(data.Date)})
+            Die Gesamtzahl wird aus der Summe der für jedes Bundesland jeweils höchsten Fallzahl (Bundesland, 
+            <a target="_blank" href="${data.RKI.URL}"><abbr title="Robert-Koch-Institut">RKI</abbr></a> bzw.
+            <a target="_blank" href="${data.Mopo.URL}"><abbr title="Berliner Morgenpost">MoPo</abbr></a>) berechnet,
+            in dem Bestreben, damit die aktuellsten Zahlen anzuzeigen.
         </p>
         <p>
-            Diese Website ist ein <a href="https://twitter.com/Hoffmann">privates</a> Projekt. Der Quellcode steht unter der GPLv3 und ist auf
-            <a href="https://github.com/HoffmannP/coronaZahlen">Github</a> zu finden, ebenso wie die
-            <a href="https://github.com/HoffmannP/coronaZahlen/releases">Binary</a>. Die Rohdaten sind separat im json-Format
-            <a href="${data.Name}.json">downloadbar</a>. Kontakt via <a href="https://twitter.com/Hoffmann">Twitter <span class="tt">@Hoffmann</span></a>.
+            Diese Website ist ein privates Projekt. Der Quellcode steht unter der GPLv3 und ist auf 
+            <a href="https://github.com/HoffmannP/coronaZahlen">Github</a> zu finden. Die Rohdaten sind separat im json-Format
+            <a href="${data.Name}" download="coronaZahlen vom ${timestamp(data.Date)}.json}">downloadbar</a> herunterladbar. Kontakt zu
+            mir gibt es via <a href="https://twitter.com/Hoffmann">Twitter&nbsp;<span class="tt">@Hoffmann</span></a>.
         </p>
         
         <table class="u-full-width">
@@ -54,19 +44,21 @@ function render (data) {
             <tfoot>
                 <tr>
                     <th rowspan="3">Deutschland</th>
-                    <th>${data.Sum}</th>
-                    <td colspan="3"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>${data.RKI.Count}</td>
-                    <td></td>
-                    <td><a target="_blank" href="${data.RKI.URL}">${timestamp(data.RKI.Date)}</a></td>
-                </tr>
-                <tr>
+                    <th>${niceNumber(data.Sum)}</th>
                     <td colspan="2"></td>
-                    <td>${data.Mopo.Count}</td>
-                    <td><a target="_blank" href="${data.Mopo.URL}">${timestamp(data.Mopo.Date)}</a></td>
+                    <td>${timestamp(data.Date)}</td>
+                </tr>
+                <tr>
+                    <td>RKI:</td>
+                    <td>${niceNumber(data.RKI.Count)}</td>
+                    <td></td>
+                    <td>${timestamp(data.RKI.Date)}</td>
+                </tr>
+                <tr>
+                    <td>Mopo:</td>
+                    <td></td>
+                    <td>${niceNumber(data.Mopo.Count)}</td>
+                    <td>${timestamp(data.Mopo.Date)}</td>
                 </tr>
             </tfoot>
         </table>
@@ -76,6 +68,18 @@ function render (data) {
     (th, i) => th.addEventListener('click', sort.bind(0, i))
   )
   window.th[0].dataset.sort = 0
+}
+
+function renderTable (rows) {
+  return rows.map(row => `
+    <tr>
+        <td><a href="${niceNumber(row.URL)}">${row.Name}</a></td>
+        <td class="${row.Count < row.Max ? 'blass' : ''}">${isAvailable(row.Count)}</td>
+        <td class="${row.RKI < row.Max ? 'blass' : ''}">${niceNumber(row.RKI)}</td>
+        <td class="${row.Mopo < row.Max ? 'blass' : ''}">${niceNumber(row.Mopo)}</td>
+        <td>${timestamp(row.Date)}</td>
+    </tr>
+  `).join('\n')
 }
 
 const sorter = [
@@ -111,4 +115,6 @@ function timestamp (unix) {
   const time = { hour: 'numeric', minute: '2-digit' }
   return ts.toLocaleString('de-DE', { ...date, ...(withTime ? time : {}) }) + (withTime ? ' Uhr' : '')
 }
-const isAvailable = x => x === -1 ? 'n/a' : x
+
+const niceNumber = x => ('' + x).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+const isAvailable = x => x === -1 ? 'n/a' : niceNumber(x)

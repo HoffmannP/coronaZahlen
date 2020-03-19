@@ -1,3 +1,4 @@
 /coronaZahlen
 *.code-*
 .vscode
+ftp.json

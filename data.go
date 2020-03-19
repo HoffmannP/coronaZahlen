@@ -18,7 +18,6 @@ type casecountP struct {
 	Count int
 	RKI   int
 	Mopo  int
-	Max   int
 }
 
 type casecounts map[string]casecountP
@@ -49,21 +48,12 @@ func newData(name string, rki rkiType, m mopo) (j data) {
 }
 
 func (j *data) append(name, url string, timestamp time.Time, count, rki, mopo int) {
-	var max int
-	if count >= rki && count >= mopo {
-		max = count
-	} else if rki >= count && rki >= mopo {
-		max = rki
-	} else {
-		max = mopo
-	}
 	j.Regions[name] = casecountP{
 		URL:   url,
 		Date:  timestamp.Unix(),
 		Count: count,
 		RKI:   rki,
 		Mopo:  mopo,
-		Max:   max,
 	}
 }
 

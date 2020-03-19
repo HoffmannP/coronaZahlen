@@ -1,3 +1,7 @@
+a {
+    text-decoration: none;
+}
+
 .blass {
     color: darkgrey;
 }
@@ -6,7 +10,7 @@
     font-family: monospace;
 }
 
-th:not(.sorted)::after {
+thead > th:not(.sorted)::after {
     content: "▼";
     color: transparent;
 }
@@ -16,4 +20,16 @@ th:not(.sorted)::after {
 }
 .sorted[data-sort="1"]::after {
     content: "▲";
+}
+
+tr > * + * {
+    text-align: right;
+}
+tr > *:last-child {
+    padding-left: 3em;
+    text-align: left;
+}
+
+tfoot > tr > th:first-child {
+    vertical-align: baseline;
 }
