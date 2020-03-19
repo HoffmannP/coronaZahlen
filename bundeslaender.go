@@ -92,7 +92,7 @@ func regions() caseRegions {
 			URL:       "https://soziales.hessen.de/gesundheit/infektionsschutz/coronavirus-sars-cov-2/taegliche-uebersicht-der-bestaetigten-sars-cov-2-faelle-hessen",
 			Listentry: position{"", ""},
 			Casecount: position{
-				Selector: "table > tbody > tr:last-child > td:last-child",
+				Selector: "table > tbody > tr:last-child > td:nth-child(2)",
 				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
@@ -136,7 +136,7 @@ func regions() caseRegions {
 			},
 			Timestamp: position{
 				Selector: ".field-item > p",
-				Match:    "Aktueller Stand der Liste: 2. January 2006, 15.04 Uhr.",
+				Match:    "Aktueller Stand: 2. January 2006, 15.04 Uhr.",
 			},
 		},
 		"Rheinland-Pfalz": {
