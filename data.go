@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"io/ioutil"
+	"log"
 	"time"
 )
 
@@ -66,6 +67,7 @@ func (j *data) saveJSON(filename string) {
 	if !diff(filename, &j.Regions) {
 		return
 	}
+	log.Println("Update")
 
 	json, err := json.MarshalIndent(j, "", "  ")
 	if err != nil {
