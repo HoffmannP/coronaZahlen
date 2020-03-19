@@ -1,0 +1,19 @@
+.blass {
+    color: darkgrey;
+}
+
+.tt {
+    font-family: monospace;
+}
+
+th:not(.sorted)::after {
+    content: "▼";
+    color: transparent;
+}
+
+.sorted[data-sort="0"]::after {
+    content: "▼";
+}
+.sorted[data-sort="1"]::after {
+    content: "▲";
+}
