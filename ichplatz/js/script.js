@@ -16,18 +16,18 @@ function render (data) {
 
         <p>
             Die Fallzahlen sind aus den Homepages (z.T. Pressemitteilungen) der Bundesländer zusammengetragen.
-            Die Gesamtzahl wird aus der Summe der für jedes Bundesland jeweils höchsten Fallzahl (Bundesland, 
+            Die Gesamtzahl wird aus der Summe der für jedes Bundesland jeweils höchsten Fallzahl (Bundesland,
             <a target="_blank" href="${data.RKI.URL}"><abbr title="Robert-Koch-Institut">RKI</abbr></a> bzw.
             <a target="_blank" href="${data.Mopo.URL}"><abbr title="Berliner Morgenpost">MoPo</abbr></a>) berechnet,
             in dem Bestreben, damit die aktuellsten Zahlen anzuzeigen.
         </p>
         <p>
-            Diese Website ist ein privates Projekt. Der Quellcode steht unter der GPLv3 und ist auf 
-            <a href="https://github.com/HoffmannP/coronaZahlen">Github</a> zu finden. Die Rohdaten sind separat im json-Format
-            <a href="${data.Name}" download="coronaZahlen vom ${timestamp(data.Date)}.json}">downloadbar</a> herunterladbar. Kontakt zu
-            mir gibt es via <a href="https://twitter.com/Hoffmann">Twitter&nbsp;<span class="tt">@Hoffmann</span></a>.
+            Diese Website ist ein privates Projekt. Der Quellcode steht unter der GPLv3 und ist auf
+            <a target="_blank" href="https://github.com/HoffmannP/coronaZahlen">Github</a> zu finden. Die Rohdaten sind separat im json-Format
+            <a href="${data.Name}" download="coronaZahlen vom ${timestamp(data.Date)}.json}">downloadbar</a>. Kontakt zu
+            mir gibt es via <a target="_blank" href="https://twitter.com/Hoffmann">Twitter&nbsp;<span class="tt">@Hoffmann</span></a>.
         </p>
-        
+
         <table class="u-full-width">
             <thead>
                 <tr>
@@ -73,7 +73,7 @@ function render (data) {
 function renderTable (rows) {
   return rows.map(row => `
     <tr>
-        <td><a href="${niceNumber(row.URL)}">${row.Name}</a></td>
+        <td><a target="_blank" href="${niceNumber(row.URL)}">${row.Name}</a></td>
         <td class="${row.Count < row.Max ? 'blass' : ''}">${isAvailable(row.Count)}</td>
         <td class="${row.RKI < row.Max ? 'blass' : ''}">${niceNumber(row.RKI)}</td>
         <td class="${row.Mopo < row.Max ? 'blass' : ''}">${niceNumber(row.Mopo)}</td>

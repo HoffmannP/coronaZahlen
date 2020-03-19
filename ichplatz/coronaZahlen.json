@@ -1,6 +1,6 @@
 {
   "Name": "coronaZahlen.json",
-  "Date": 1584584516,
+  "Date": 1584586301,
   "RKI": {
     "URL": "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html",
     "Date": 1584486000,
@@ -17,113 +17,129 @@
       "Date": 1584486000,
       "Count": 2184,
       "RKI": 1609,
-      "Mopo": 2184
+      "Mopo": 2184,
+      "Max": 2184
     },
     "Bayern": {
       "URL": "https://www.lgl.bayern.de/gesundheit/infektionsschutz/infektionskrankheiten_a_z/coronavirus/karte_coronavirus/index.htm",
       "Date": 1584529200,
       "Count": 1798,
       "RKI": 1243,
-      "Mopo": 1798
+      "Mopo": 1798,
+      "Max": 1798
     },
     "Berlin": {
       "URL": "https://www.berlin.de/sen/gpg/service/presse/",
       "Date": 1584486000,
       "Count": 519,
       "RKI": 391,
-      "Mopo": 519
+      "Mopo": 519,
+      "Max": 519
     },
     "Brandenburg": {
       "URL": "https://msgiv.brandenburg.de/msgiv/de/start/",
       "Date": 1584543600,
       "Count": 171,
       "RKI": 92,
-      "Mopo": 171
+      "Mopo": 171,
+      "Max": 171
     },
     "Bremen": {
       "URL": "https://www.gesundheit.bremen.de/",
       "Date": 1584399600,
       "Count": 66,
       "RKI": 69,
-      "Mopo": 75
+      "Mopo": 75,
+      "Max": 75
     },
     "Hamburg": {
       "URL": "https://www.hamburg.de/coronavirus/",
       "Date": 1584486000,
       "Count": 414,
       "RKI": 358,
-      "Mopo": 414
+      "Mopo": 414,
+      "Max": 414
     },
     "Hessen": {
       "URL": "https://soziales.hessen.de/gesundheit/infektionsschutz/coronavirus-sars-cov-2",
       "Date": 1584486000,
       "Count": 547,
       "RKI": 432,
-      "Mopo": 547
+      "Mopo": 547,
+      "Max": 547
     },
     "Mecklenburg-Vorpommern": {
       "URL": "https://www.regierung-mv.de/Landesregierung/wm/Aktuell/?sa.query=neue+Corona-Infektionen\u0026sa.pressemitteilungen.area=11",
       "Date": 0,
       "Count": -1,
       "RKI": 56,
-      "Mopo": 100
+      "Mopo": 100,
+      "Max": 100
     },
     "Niedersachsen": {
       "URL": "https://www.niedersachsen.de/Coronavirus",
       "Date": 1584540000,
       "Count": 740,
       "RKI": 478,
-      "Mopo": 740
+      "Mopo": 740,
+      "Max": 740
     },
     "Nordrhein-Westfalen": {
       "URL": "https://www.mags.nrw/coronavirus-fallzahlen-nrw",
       "Date": 1584522000,
       "Count": 3838,
       "RKI": 2372,
-      "Mopo": 4268
+      "Mopo": 4268,
+      "Max": 4268
     },
     "Rheinland-Pfalz": {
       "URL": "https://msagd.rlp.de/de/unsere-themen/gesundheit-und-pflege/gesundheitliche-versorgung/oeffentlicher-gesundheitsdienst-hygiene-und-infektionsschutz/infektionsschutz/informationen-zum-coronavirus-sars-cov-2/",
       "Date": 1584525600,
       "Count": 603,
       "RKI": 474,
-      "Mopo": 603
+      "Mopo": 603,
+      "Max": 603
     },
     "Saarland": {
       "URL": "https://www.saarland.de/SID-C29AF463-5CFEAE1B/253741.htm",
       "Date": 1584368700,
       "Count": 85,
       "RKI": 88,
-      "Mopo": 169
+      "Mopo": 169,
+      "Max": 169
     },
     "Sachsen": {
       "URL": "https://www.sms.sachsen.de/coronavirus.html",
       "Date": 1584536400,
       "Count": 296,
       "RKI": 198,
-      "Mopo": 296
+      "Mopo": 296,
+      "Max": 296
     },
     "Sachsen-Anhalt": {
       "URL": "http://www.presse.sachsen-anhalt.de/index.php?cmd=get\u0026id=909328\u0026identifier=6e56de27176c4bb06e4fdff9ccd5b651",
       "Date": 1584486000,
       "Count": 116,
       "RKI": 105,
-      "Mopo": 133
+      "Mopo": 133,
+      "Max": 133
     },
     "Schleswig-Holstein": {
       "URL": "https://www.schleswig-holstein.de/DE/Landesregierung/I/Presse/_documents/Corona-Liste_Kreise.html",
       "Date": 1584486000,
       "Count": 196,
       "RKI": 159,
-      "Mopo": 196
+      "Mopo": 196,
+      "Max": 196
     },
     "Thüringen": {
       "URL": "https://www.landesregierung-thueringen.de/corona-bulletin",
       "Date": 1584525600,
       "Count": 87,
       "RKI": 74,
-      "Mopo": 114
+      "Mopo": 114,
+      "Max": 114
     }
   },
-  "Sum": 12327
+  "Sum": 11722
 }
