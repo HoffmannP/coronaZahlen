@@ -89,15 +89,15 @@ func regions() caseRegions {
 			},
 		},
 		"Hessen": {
-			URL:       "https://soziales.hessen.de/gesundheit/infektionsschutz/coronavirus-sars-cov-2",
+			URL:       "https://soziales.hessen.de/gesundheit/infektionsschutz/coronavirus-sars-cov-2/taegliche-uebersicht-der-bestaetigten-sars-cov-2-faelle-hessen",
 			Listentry: position{"", ""},
 			Casecount: position{
-				Selector: "section:nth-child(2) > .block-inner > .blockContent",
-				Match:    `insgesamt ([.\d]+).SARS-CoV-2-Fälle`,
+				Selector: "table > tbody > tr:last-child > td:last-child",
+				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
-				Selector: "section:nth-child(2) > .block-inner > .blockContent",
-				Match:    "Stand 2. January 2006,",
+				Selector: "h3:first-of-type",
+				Match:    "Stand 2. January 2006, 15:04 Uhr",
 			},
 		},
 		"Mecklenburg-Vorpommern": {
@@ -164,7 +164,7 @@ func regions() caseRegions {
 			},
 		},
 		"Sachsen": {
-			URL:       "https://www.sms.sachsen.de/coronavirus.html",
+			URL:       "https://www.coronavirus.sachsen.de/infektionsfaelle-in-sachsen-4151.html",
 			Listentry: position{"", ""},
 			Casecount: position{
 				Selector: "table > tbody > tr:last-child > td:nth-child(2) > strong",
@@ -176,18 +176,15 @@ func regions() caseRegions {
 			},
 		},
 		"Sachsen-Anhalt": {
-			URL: "https://ms.sachsen-anhalt.de/presse/pressemitteilungen/?no_cache=1",
-			Listentry: position{
-				"#oldpdb > div:first-child > h2 > a",
-				"",
-			},
+			URL:       "https://verbraucherschutz.sachsen-anhalt.de/hygiene/infektionsschutz/infektionskrankheiten/coronavirus/#c234506",
+			Listentry: position{"", ""},
 			Casecount: position{
 				Selector: "table > tbody > tr:last-child > td:last-child",
 				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
-				Selector: ".pm_datum",
-				Match:    "den 2. January 2006",
+				Selector: ".table-responsive + p",
+				Match:    "Stand: 2.01.2006 (15:04 Uhr)",
 			},
 		},
 		"Schleswig-Holstein": {
