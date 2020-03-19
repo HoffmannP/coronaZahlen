@@ -47,5 +47,4 @@ func main() {
 
 	data.sum(sum)
 	data.saveJSON("ichplatz/coronaZahlen.json")
-
 }

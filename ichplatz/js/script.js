@@ -106,7 +106,7 @@ function sort (col) {
 }
 
 function timestamp (unix) {
-  if (unix === 0) {
+  if (unix <= 0) {
     return 'n/a'
   }
   const ts = new Date(unix * 1000)

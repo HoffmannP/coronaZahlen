@@ -63,6 +63,10 @@ func (j *data) sum(sum int) {
 }
 
 func (j *data) saveJSON(filename string) {
+	if !diff(filename, &j.Regions) {
+		return
+	}
+
 	json, err := json.MarshalIndent(j, "", "  ")
 	if err != nil {
 		panic(err)

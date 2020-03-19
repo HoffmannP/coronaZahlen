@@ -15,10 +15,6 @@ type rkiType struct {
 	url       string
 }
 
-func cellFirstNumber(row *goquery.Selection, number int) (int, error) {
-	return toNumber(strings.Split(row.Eq(number).Text(), " ")[0])
-}
-
 func loadRKI() (rki rkiType) {
 	c := colly.NewCollector()
 	rki.url = "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html"
@@ -41,8 +37,8 @@ func loadRKI() (rki rkiType) {
 func (rki rkiType) lookup(region string) int {
 	row := rki.table.Find("tr").FilterFunction(func(i int, tr *goquery.Selection) bool {
 		return tr.Find("td:first-child").Text() == region
-	}).First().Find("td")
-	count, err := cellFirstNumber(row, 2)
+	}).First()
+	count, err := toNumber(strings.Split(row.Find("td").Eq(1).Text(), " ")[0])
 	if err != nil {
 		log.Println(err.Error())
 		return -1

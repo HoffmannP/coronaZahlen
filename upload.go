@@ -15,17 +15,19 @@ type ftpdata struct {
 	Remotename string
 }
 
-func upload(file []byte) {
-	j, err := ioutil.ReadFile("ftp.json")
+func getFtpData(filename string) (ftpdata ftpdata) {
+	j, err := ioutil.ReadFile(filename)
 	if err != nil {
 		panic(err)
 	}
 
-	var ftpdata ftpdata
 	if err := json.Unmarshal(j, &ftpdata); err != nil {
 		panic(err)
 	}
+	return
+}
 
+func connect(ftpdata ftpdata) func(*bytes.Buffer) error {
 	c, err := ftp.Dial(ftpdata.Address)
 	if err != nil {
 		panic(err)
@@ -36,13 +38,23 @@ func upload(file []byte) {
 		panic(err)
 	}
 
-	data := bytes.NewBuffer(file)
-	err = c.Stor(ftpdata.Remotename, data)
-	if err != nil {
-		panic(err)
-	}
+	return func(data *bytes.Buffer) error {
+		if err := c.Stor(ftpdata.Remotename, data); err != nil {
+			return err
+		}
 
-	if err := c.Quit(); err != nil {
+		if err := c.Quit(); err != nil {
+			return err
+		}
+
+		return nil
+	}
+}
+
+func upload(file []byte) {
+	data := bytes.NewBuffer(file)
+	upload := connect(getFtpData("ftp.json"))
+	if err := upload(data); err != nil {
 		panic(err)
 	}
 }
