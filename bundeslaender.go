@@ -107,7 +107,7 @@ func regions() caseRegions {
 				Match:    "https://www.regierung-mv.de",
 			},
 			Casecount: position{
-				Selector: "", // table > tbody > tr:last-child > td:nth-child(3)",
+				Selector: "table > tbody > tr:last-child > td:nth-child(3)",
 				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{

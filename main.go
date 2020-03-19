@@ -1,7 +1,12 @@
 package main
 
+import "log"
+
 func getRegion(regionName string, regionData caseRegion, rki rkiType, m mopo, j data, sum chan int) {
-	casecount, timestamp := regionData.loadRegion()
+	casecount, timestamp, err := regionData.loadRegion()
+	if err != nil {
+		log.Printf("%-22s %s\n", regionName, err.Error())
+	}
 	rkicount := rki.lookup(regionName)
 	mopocount := m.lookup(regionName)
 	var summand int

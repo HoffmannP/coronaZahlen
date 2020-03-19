@@ -36,31 +36,39 @@ func errorHandler(text string, err error) {
 	panic(err)
 }
 
-func (p position) grabNumber(e *colly.HTMLElement) int {
-	return toNumber(grab(e, p))
+func (p position) grabNumber(e *colly.HTMLElement) (int, error) {
+	numtext, err := grab(e, p)
+	if err != nil {
+		return -1, err
+	}
+	return toNumber(numtext)
 }
 
-func toNumber(t string) int {
+func toNumber(t string) (int, error) {
 	if t == "" {
-		return -1
+		return -1, fmt.Errorf("no count selector")
 	}
 	text := strings.ReplaceAll(t, ".", "")
 	i, err := strconv.Atoi(text)
 	if err != nil {
-		errorHandler(text, err)
+		return -1, err
 	}
-	return int(i)
+	return int(i), nil
 }
 
-func (p position) grabDate(e *colly.HTMLElement) time.Time {
+func (p position) grabDate(e *colly.HTMLElement) (time.Time, error) {
 	layout := p.Match
 	p.Match = parseToRegexp(p.Match)
-	return toDate(grab(e, p), layout)
+	date, err := grab(e, p)
+	if err != nil {
+		return time.Time{}, err
+	}
+	return toDate(date, layout)
 }
 
-func toDate(ts, layout string) time.Time {
+func toDate(ts, layout string) (time.Time, error) {
 	if ts == "" {
-		return time.Unix(0, 0)
+		return time.Time{}, fmt.Errorf("no count selector")
 	}
 	tz, _ := time.LoadLocation("Europe/Berlin")
 	t, err := monday.ParseInLocation(layout, ts, tz, "de_DE")
@@ -73,29 +81,29 @@ func toDate(ts, layout string) time.Time {
 		t, err = monday.ParseInLocation(layout, ts, tz, "de_DE")
 	}
 	if err != nil {
-		errorHandler(ts, err)
+		return time.Time{}, err
 	}
 	if t.Year() == 0 {
 		t = t.AddDate(time.Now().Year(), 0, 0)
 	}
-	return t
+	return t, nil
 }
 
-func grab(e *colly.HTMLElement, p position) string {
+func grab(e *colly.HTMLElement, p position) (string, error) {
 	re := regexp.MustCompile(p.Match)
 	var t []string
 	matches := e.DOM.Find(p.Selector)
 	if matches.Length() == 0 {
-		panic("Konnte kein Element mit '" + p.Selector + "' finden")
+		return "", fmt.Errorf("Konnte kein Element mit '" + p.Selector + "' finden")
 	}
 	matches.EachWithBreak(func(i int, s *goquery.Selection) bool {
 		t = re.FindStringSubmatch(s.Text())
 		return len(t) == 0 // i. e. while no submatch found continue
 	})
 	if len(t) <= 1 {
-		panic("Konnte nichts matchen mit '" + p.Match + "'")
+		return "", fmt.Errorf("Konnte mit '%s' nicht matchen", p.Match)
 	}
-	return t[1]
+	return t[1], nil
 }
 
 func (r *caseRegion) url() string {
@@ -112,19 +120,24 @@ func (r *caseRegion) url() string {
 	return r.URL
 }
 
-func (r *caseRegion) loadRegion() (num int, ts time.Time) {
+func (r *caseRegion) loadRegion() (num int, ts time.Time, err error) {
 	if r.Casecount.Selector == "" {
-		return -1, time.Unix(0, 0)
+		return -1, time.Time{}, nil
 	}
 	c := colly.NewCollector()
 	c.SetRequestTimeout(15 * 1000000000)
 	c.OnHTML("body", func(e *colly.HTMLElement) {
-
-		num = r.Casecount.grabNumber(e)
-		ts = r.Timestamp.grabDate(e)
+		num, err = r.Casecount.grabNumber(e)
+		if err != nil {
+			return
+		}
+		ts, err = r.Timestamp.grabDate(e)
+		if err != nil {
+			return
+		}
 	})
-	c.OnError(func(r *colly.Response, err error) {
-		panic(err)
+	c.OnError(func(r *colly.Response, netErr error) {
+		err = netErr
 	})
 	c.Visit(r.url())
 	return
