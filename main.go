@@ -28,7 +28,7 @@ func main() {
 	rki := loadRKI()
 	mopo := loadMopo()
 	sum := 0
-	data := newData("CoronaCountsGermany", rki, mopo)
+	data := newData("coronaZahlen.json", rki, mopo)
 	allRegions := regions()
 	next := make(chan int)
 
@@ -38,7 +38,6 @@ func main() {
 	remaing(len(allRegions), &sum, next)
 
 	data.sum(sum)
-	data.saveHTML("template.html", "docs/index.html")
-	data.saveJSON("docs/")
+	data.saveJSON("ichplatz/coronaZahlen.json")
 
 }

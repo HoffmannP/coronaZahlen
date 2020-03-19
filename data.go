@@ -3,9 +3,6 @@ package main
 import (
 	"encoding/json"
 	"io/ioutil"
-	"os"
-	"strconv"
-	"text/template"
 	"time"
 )
 
@@ -75,49 +72,14 @@ func (j *data) sum(sum int) {
 	j.Date = time.Now().Unix()
 }
 
-func (j *data) saveJSON(path string) {
+func (j *data) saveJSON(filename string) {
 	json, err := json.MarshalIndent(j, "", "  ")
 	if err != nil {
 		panic(err)
 	}
-	err = ioutil.WriteFile(path+j.Name+".json", json, 0644)
+	err = ioutil.WriteFile(filename, json, 0644)
 	if err != nil {
 		panic(err)
 	}
-}
-
-func (j *data) saveHTML(tmplFile, filename string) {
-	funcMap := template.FuncMap{
-		"blass": func(lt bool) string {
-			if lt {
-				return "class=\"blass\""
-			}
-			return ""
-		},
-		"isAvailable": func(c int) string {
-			if c == -1 {
-				return "n/a"
-			}
-			return strconv.Itoa(c)
-		},
-		"timestamp": func(t int64) string {
-			return time.Unix(t, 0).Format("2.01.2006 15:04 Uhr")
-		},
-	}
-
-	t, err := template.New(tmplFile).Funcs(funcMap).ParseFiles(tmplFile)
-	if err != nil {
-		panic(err)
-	}
-	t = t.Lookup(tmplFile)
-
-	f, err := os.OpenFile(filename, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
-	if err != nil {
-		panic(err)
-	}
-
-	err = t.Execute(f, j)
-	if err != nil {
-		panic(err)
-	}
+	upload(json)
 }
