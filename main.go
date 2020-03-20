@@ -2,6 +2,13 @@ package main
 
 import "log"
 
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
 func getRegion(regionName string, regionData caseRegion, rki rkiType, m mopo, j data, sum chan int) {
 	casecount, timestamp, err := regionData.loadRegion()
 	if err != nil {
@@ -9,27 +16,9 @@ func getRegion(regionName string, regionData caseRegion, rki rkiType, m mopo, j 
 	}
 	rkicount := rki.lookup(regionName)
 	mopocount := m.lookup(regionName)
-	var summand int
-
-	if rkicount > casecount {
-		summand = rkicount
-	} else {
-		summand = casecount
-	}
-	if mopocount > summand {
-		summand = mopocount
-	}
-
+	summand := max(casecount, max(rkicount, mopocount))
 	j.append(regionName, regionData.URL, timestamp, casecount, rkicount, mopocount)
-
 	sum <- summand
-}
-
-func remaing(remaining int, sum *int, next chan int) {
-	for remaining > 0 {
-		*sum += <-next
-		remaining--
-	}
 }
 
 func main() {
@@ -43,7 +32,9 @@ func main() {
 	for regionName, regionData := range allRegions {
 		go getRegion(regionName, regionData, rki, mopo, data, next)
 	}
-	remaing(len(allRegions), &sum, next)
+	for i := len(allRegions); i > 0; i-- {
+		sum += <-next
+	}
 
 	data.sum(sum)
 	data.saveJSON("ichplatz/coronaZahlen.json")
