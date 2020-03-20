@@ -37,7 +37,8 @@ func diff(filename string, regions *casecounts) bool {
 		}
 		if (regionOldData.Date != regionNewData.Date) ||
 			(regionOldData.RKI != regionNewData.RKI) ||
-			(regionOldData.Mopo != regionNewData.Mopo) {
+			(regionOldData.Mopo != regionNewData.Mopo) ||
+			(regionOldData.CJ != regionNewData.CJ) {
 			return true
 		}
 	}

@@ -8,8 +8,9 @@ function render (data) {
   if (window.data === undefined) {
     window.data = data
   }
-  window.data.Regions = Object.entries(data.Regions).map(([Name, region], i) => ({ Index: i, Name, ...region, Max: Math.max(region.Count, region.RKI, region.Mopo) }))
+  window.data.Regions = Object.entries(data.Regions).map(([Name, region], i) => ({ Index: i, Name, ...region, Max: Math.max(region.Count, region.RKI, region.Mopo, region.CJ) }))
   window.data.Mopo.Count = window.data.Regions.map(r => r.Mopo).reduce((a, c) => a + c)
+  window.data.CJ.Count = window.data.Regions.map(r => r.CJ).reduce((a, c) => a + c)
   document.querySelector('body').innerHTML = `
     <div class="container">
         <h1>Fallzahlen Corona Deutschlandweit</h1>
@@ -18,6 +19,7 @@ function render (data) {
             Die Fallzahlen sind aus den Homepages (z.T. Pressemitteilungen) der Bundesländer zusammengetragen.
             Die Gesamtzahl wird aus der Summe der für jedes Bundesland jeweils höchsten Fallzahl (Bundesland,
             <a target="_blank" href="${data.RKI.URL}"><abbr title="Robert-Koch-Institut">RKI</abbr></a> bzw.
+            <a target="_blank" href="${data.CJ.URL}"><abbr title="corona.jetzt">CoJe</abbr></a> und
             <a target="_blank" href="${data.Mopo.URL}"><abbr title="Berliner Morgenpost">MoPo</abbr></a>) berechnet,
             in dem Bestreben, damit die aktuellsten Zahlen anzuzeigen.
         </p>
@@ -35,6 +37,7 @@ function render (data) {
                     <th>Fälle</th>
                     <th>RKI</th>
                     <th>MoPo</th>
+                    <th>CoJe</th>
                     <th>Stand</th>
                 </tr>
             </thead>
@@ -43,22 +46,27 @@ function render (data) {
             </tbody>
             <tfoot>
                 <tr>
-                    <th rowspan="3">Deutschland</th>
+                    <th rowspan="4">Deutschland</th>
                     <th>${niceNumber(data.Sum)}</th>
-                    <td colspan="2"></td>
+                    <td colspan="3"></td>
                     <td>${timestamp(data.Date)}</td>
                 </tr>
                 <tr>
                     <td>RKI:</td>
                     <td>${niceNumber(data.RKI.Count)}</td>
-                    <td></td>
+                    <td colspan="2"></td>
                     <td>${timestamp(data.RKI.Date)}</td>
                 </tr>
                 <tr>
-                    <td>Mopo:</td>
-                    <td></td>
+                    <td colspan="2">Mopo:</td>
                     <td>${niceNumber(data.Mopo.Count)}</td>
+                    <td></td>
                     <td>${timestamp(data.Mopo.Date)}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">CoJe:</td>
+                    <td>${niceNumber(data.CJ.Count)}</td>
+                    <td>${timestamp(data.CJ.Date)}</td>
                 </tr>
             </tfoot>
         </table>
@@ -73,10 +81,11 @@ function render (data) {
 function renderTable (rows) {
   return rows.map(row => `
     <tr>
-        <td><a target="_blank" href="${niceNumber(row.URL)}">${row.Name}</a></td>
+        <td><a target="_blank" href="${row.URL}">${row.Name}</a></td>
         <td class="${row.Count < row.Max ? 'blass' : ''}">${isAvailable(row.Count)}</td>
         <td class="${row.RKI < row.Max ? 'blass' : ''}">${niceNumber(row.RKI)}</td>
         <td class="${row.Mopo < row.Max ? 'blass' : ''}">${niceNumber(row.Mopo)}</td>
+        <td class="${row.CJ < row.Max ? 'blass' : ''}">${niceNumber(row.CJ)}</td>
         <td>${timestamp(row.Date)}</td>
     </tr>
   `).join('\n')
@@ -91,6 +100,8 @@ const sorter = [
   (b, a) => a.RKI - b.RKI,
   (a, b) => a.Mopo - b.Mopo,
   (b, a) => a.Mopo - b.Mopo,
+  (a, b) => a.CJ - b.CJ,
+  (b, a) => a.CJ - b.CJ,
   (a, b) => a.Date - b.Date,
   (b, a) => a.Date - b.Date
 ]

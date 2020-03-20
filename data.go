@@ -19,6 +19,7 @@ type casecountP struct {
 	Count int
 	RKI   int
 	Mopo  int
+	CJ    int
 }
 
 type casecounts map[string]casecountP
@@ -28,11 +29,12 @@ type data struct {
 	Date    int64
 	RKI     casecount
 	Mopo    casecount
+	CJ      casecount
 	Regions casecounts
 	Sum     int
 }
 
-func newData(name string, rki rkiType, m mopo) (j data) {
+func newData(name string, rki rkiType, m mopo, cj cjType) (j data) {
 	j.Name = name
 	j.RKI = casecount{
 		URL:   rki.url,
@@ -44,17 +46,23 @@ func newData(name string, rki rkiType, m mopo) (j data) {
 		Date:  m.timestamp.Unix(),
 		Count: -1,
 	}
+	j.CJ = casecount{
+		URL:   cj.url,
+		Date:  cj.timestamp.Unix(),
+		Count: -1,
+	}
 	j.Regions = make(casecounts)
 	return
 }
 
-func (j *data) append(name, url string, timestamp time.Time, count, rki, mopo int) {
+func (j *data) append(name, url string, timestamp time.Time, count, rki, mopo, cj int) {
 	j.Regions[name] = casecountP{
 		URL:   url,
 		Date:  timestamp.Unix(),
 		Count: count,
 		RKI:   rki,
 		Mopo:  mopo,
+		CJ:    cj,
 	}
 }
 

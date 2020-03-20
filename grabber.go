@@ -46,7 +46,7 @@ func (p position) grabNumber(e *colly.HTMLElement) (int, error) {
 
 func toNumber(t string) (int, error) {
 	if t == "" {
-		return -1, fmt.Errorf("no count selector")
+		return -1, fmt.Errorf("Keine Zahltext zum Umwandeln")
 	}
 	text := strings.ReplaceAll(t, ".", "")
 	i, err := strconv.Atoi(text)
@@ -125,7 +125,7 @@ func (r *caseRegion) loadRegion() (num int, ts time.Time, err error) {
 		return -1, time.Time{}, nil
 	}
 	c := colly.NewCollector()
-	c.SetRequestTimeout(15 * 1000000000)
+	c.SetRequestTimeout(20 * 1000000000)
 	c.OnHTML("body", func(e *colly.HTMLElement) {
 		num, err = r.Casecount.grabNumber(e)
 		if err != nil {
