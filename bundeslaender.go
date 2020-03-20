@@ -24,8 +24,8 @@ func regions() caseRegions {
 				Match:    `([.\d]+) bestätigte Corona-Fälle`,
 			},
 			Timestamp: position{
-				Selector: ".article__section > .text > .bodytext",
-				Match:    "Stand: 2. January 2006",
+				Selector: "figcaption",
+				Match:    "Stand: 2. January 2006, 15:04 Uhr",
 			},
 		},
 		"Bayern": {
@@ -111,20 +111,20 @@ func regions() caseRegions {
 				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
-				Selector: "table > tbody > tr:first-child > td:nth-child(3)",
+				Selector: "table > tbody > tr:nth-child(2) > td:nth-child(3)",
 				Match:    "2.01. 15:04",
 			},
 		},
 		"Niedersachsen": {
-			URL:       "https://www.niedersachsen.de/Coronavirus",
+			URL:       "https://www.apps.nlga.niedersachsen.de/corona/iframe.php",
 			Listentry: position{"", ""},
 			Casecount: position{
-				Selector: ".maincontent > .content > .complementary > div",
-				Match:    ` ([.\d]+)\s+laborbestätigte Covid-19-Fälle`,
+				Selector: "table > tbody > tr:last-child > td:nth-child(2) > span",
+				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
-				Selector: ".maincontent > .content > .complementary > div",
-				Match:    "aktualisiert am 2.01.2006, 15.04 Uhr",
+				Selector: "body > p > b",
+				Match:    "Datenstand: 2.01.2006 15:04 Uhr",
 			},
 		},
 		"Nordrhein-Westfalen": {
