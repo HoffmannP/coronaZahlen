@@ -1,6 +1,7 @@
 package main
 
 import (
+	"strings"
 	"time"
 
 	"github.com/gocolly/colly/v2"
@@ -32,7 +33,7 @@ func (rki *rkiType) count(e *colly.HTMLElement) (counts map[string]int, err erro
 	rows := e.DOM.Find("table > tbody > tr")
 	for i := 0; i < rows.Length(); i++ {
 		cells := rows.Eq(i).Find("td")
-		counts[cells.Eq(0).Text()], err = toNumber(cells.Eq(1).Text())
+		counts[strings.Replace(cells.Eq(0).Text(), "­", "", -1)], err = toNumber(cells.Eq(1).Text())
 	}
 	return
 }
