@@ -14,10 +14,10 @@ func max(a, b int) int {
 }
 
 type regionType struct {
-	name string
+	name      string
 	casecount int
 	timestamp time.Time
-	err error
+	err       error
 }
 
 func getRegion(n string, r caseRegion, i chan<- regionType) {
@@ -30,7 +30,7 @@ func getRegion(n string, r caseRegion, i chan<- regionType) {
 	}
 }
 
-	/*
+/*
 func getRegion(regionName string, regionData caseRegion, rki rkiType, m mopo, j data, sum chan int) {
 	casecount, timestamp, err := regionData.loadRegion()
 	if err != nil {
@@ -58,11 +58,18 @@ func main() {
 	data := newData("coronaZahlen.json", rki, mopo, cj)
 	allRegions := regions()
 	next := make(chan regionType)
+	waitingFor := 0
 
 	for regionName, regionData := range allRegions {
+		/*
+			if regionName != "Bremen" {
+				continue
+			}
+		*/
 		go getRegion(regionName, regionData, next)
+		waitingFor++
 	}
-	for i := len(allRegions); i > 0; i-- {
+	for i := waitingFor; i > 0; i-- {
 		i := <-next
 		if i.err != nil {
 			log.Printf("%-22s %s\n", i.name, i.err.Error())

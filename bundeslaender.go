@@ -53,27 +53,28 @@ func regions() caseRegions {
 			},
 		},
 		"Brandenburg": {
-			URL:       "https://msgiv.brandenburg.de/msgiv/de/start/",
+			URL:       "https://msgiv.brandenburg.de/msgiv/de/presse/pressemitteilungen/",
 			Listentry: position{"", ""},
 			Casecount: position{
-				Selector: "#form_id32516 > div > div > h2",
-				Match:    `Insgesamt ([.\d]+) Erkrankungen`,
+				Selector: "h2.bb-teaser-headline",
+				// Match:    `Insgesamt ([.\d]+) Erkrankungen
+				Match: ` ([.\d]+) bestätigte`,
 			},
 			Timestamp: position{
-				Selector: "#form_id32516 > div > div > p",
+				Selector: "h2.bb-teaser-headline + p",
 				Match:    " (Stand: 2.01.2006, 15:04 Uhr).",
 			},
 		},
 		"Bremen": {
-			URL:       "https://www.gesundheit.bremen.de/",
+			URL:       "https://www.gesundheit.bremen.de/sixcms/detail.php?gsid=bremen229.c.32660.de",
 			Listentry: position{"", ""},
 			Casecount: position{
-				Selector: ".news_bigteaser > p",
-				Match:    ` ([.\d]+) als positiv`,
+				Selector: "div.entry-wrapper-normal > table > tbody > tr:nth-child(2) > td:nth-child(2)",
+				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
-				Selector: ".news_bigteaser > p",
-				Match:    "(Stand 2.1.2006)",
+				Selector: "div.entry-wrapper-normal > h2",
+				Match:    "Monday, 2. January",
 			},
 		},
 		"Hamburg": {
@@ -107,7 +108,7 @@ func regions() caseRegions {
 				Match:    "https://www.regierung-mv.de",
 			},
 			Casecount: position{
-				Selector: "table > tbody > tr:last-child > td:nth-child(3)",
+				Selector: "table > tbody > tr:nth-last-child(2) > td:nth-child(3)",
 				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
