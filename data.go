@@ -85,7 +85,6 @@ func (j *data) logJSON() error {
 	if err != nil {
 		return err
 	}
-	fmt.Println(string(json))
 	gzipWriter := gzip.NewWriter(file)
 	gzipWriter.Name = name
 	gzipWriter.Comment = "Corona Zahlen " + now.Format("2006-01-02 15:04")
