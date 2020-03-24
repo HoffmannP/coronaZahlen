@@ -108,7 +108,7 @@ func regions() caseRegions {
 				Match:    "https://www.regierung-mv.de",
 			},
 			Casecount: position{
-				Selector: "table > tbody > tr:nth-last-child(2) > td:nth-child(3)",
+				Selector: "table > tbody > tr:last-child > td:nth-child(3)",
 				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
@@ -132,7 +132,7 @@ func regions() caseRegions {
 			URL:       "https://www.mags.nrw/coronavirus-fallzahlen-nrw",
 			Listentry: position{"", ""},
 			Casecount: position{
-				Selector: "table > tbody > tr:last-child > td:last-child",
+				Selector: "table > tbody > tr:last-child > td:nth-child(2)",
 				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
