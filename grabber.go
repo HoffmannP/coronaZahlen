@@ -142,7 +142,9 @@ func (r *caseRegion) loadRegion() (num int, ts time.Time, err error) {
 	c.OnError(func(p *colly.Response, netErr error) {
 		if retries < maxTries {
 			retries = retries + 1
-			err = fmt.Errorf("Needed %d retries b/c timeout", retries)
+			if retries > 1 {
+				err = fmt.Errorf("Needed %d retries b/c timeout", retries)
+			}
 			c.Visit(r.url())
 		} else {
 			err = netErr
