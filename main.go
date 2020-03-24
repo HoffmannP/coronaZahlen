@@ -30,19 +30,6 @@ func getRegion(n string, r caseRegion, i chan<- regionType) {
 	}
 }
 
-/*
-func getRegion(regionName string, regionData caseRegion, rki rkiType, m mopo, j data, sum chan int) {
-	casecount, timestamp, err := regionData.loadRegion()
-	if err != nil {
-		log.Printf("%-22s %s\n", regionName, err.Error())
-	}
-	rkicount := rki.lookup(regionName)
-	mopocount := m.lookup(regionName)
-	summand := max(casecount, max(rkicount, mopocount))
-	j.append(regionName, regionData.URL, timestamp, casecount, rkicount, mopocount)
-	sum <- summand
-}
-*/
 
 func main() {
 	mopo := loadMopo()

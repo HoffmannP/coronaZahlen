@@ -71,6 +71,7 @@ func toDate(ts, layout string) (time.Time, error) {
 		return time.Time{}, fmt.Errorf("no count selector")
 	}
 	ts = strings.Replace(ts, "onnabend", "amstag", 1)
+	ts = strings.Replace(ts, "iensta,", "ienstag,", 1)
 	tz, _ := time.LoadLocation("Europe/Berlin")
 	t, err := monday.ParseInLocation(layout, ts, tz, "de_DE")
 	if err != nil {
