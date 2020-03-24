@@ -126,8 +126,9 @@ func (r *caseRegion) loadRegion() (num int, ts time.Time, err error) {
 	if r.Casecount.Selector == "" {
 		return -1, time.Time{}, nil
 	}
+	maxTries := 2
+	retries := 0
 	c := colly.NewCollector()
-	c.SetRequestTimeout(20 * 1000000000)
 	c.OnHTML("body", func(e *colly.HTMLElement) {
 		num, err = r.Casecount.grabNumber(e)
 		if err != nil {
@@ -138,8 +139,14 @@ func (r *caseRegion) loadRegion() (num int, ts time.Time, err error) {
 			return
 		}
 	})
-	c.OnError(func(r *colly.Response, netErr error) {
-		err = netErr
+	c.OnError(func(p *colly.Response, netErr error) {
+		if retries < maxTries {
+			retries = retries + 1
+			err = fmt.Errorf("Needed %d retries b/c timeout", retries)
+			c.Visit(r.url())
+		} else {
+			err = netErr
+		}
 	})
 	c.Visit(r.url())
 	return
