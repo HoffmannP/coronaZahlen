@@ -99,6 +99,7 @@ func grab(e *colly.HTMLElement, p position) (string, error) {
 		return "", fmt.Errorf("Konnte kein Element mit '" + p.Selector + "' finden")
 	}
 	matches.EachWithBreak(func(i int, s *goquery.Selection) bool {
+		// println(s.Text())
 		t = re.FindStringSubmatch(s.Text())
 		return len(t) == 0 // i. e. while no submatch found continue
 	})

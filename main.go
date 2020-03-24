@@ -30,7 +30,6 @@ func getRegion(n string, r caseRegion, i chan<- regionType) {
 	}
 }
 
-
 func main() {
 	mopo := loadMopo()
 	rki, err := loadRKI()
