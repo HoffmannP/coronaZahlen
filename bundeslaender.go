@@ -112,7 +112,7 @@ func regions() caseRegions {
 				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
-				Selector: "table > tbody > tr:nth-child(2) > td:nth-child(3)",
+				Selector: "table > tbody > tr:first-child > td:nth-child(3)",
 				Match:    "2.01. 15:04",
 			},
 		},
