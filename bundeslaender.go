@@ -112,7 +112,7 @@ func regions() caseRegions {
 				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
-				Selector: "table > tbody > tr:first-child > td:nth-child(3)",
+				Selector: "table > tbody > tr:nth-child(2) > td:nth-child(3)",
 				Match:    "2.01. 15:04",
 			},
 		},
@@ -153,7 +153,7 @@ func regions() caseRegions {
 			},
 		},
 		"Saarland": {
-			URL:       "https://www.saarland.de/SID-C29AF463-5CFEAE1B/253741.htm",
+			URL:       "https://www.saarland.de/254183.htm",
 			Listentry: position{"", ""},
 			Casecount: position{
 				Selector: ".textchapter_frame > p",
