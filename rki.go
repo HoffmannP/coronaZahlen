@@ -16,7 +16,7 @@ type rkiType struct {
 func loadRKI() (rki rkiType, err error) {
 	rki.url = "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html"
 	c := colly.NewCollector()
-	c.OnHTML("#main > .text", func(e *colly.HTMLElement) {
+	c.OnHTML("#main > * > .box", func(e *colly.HTMLElement) {
 		rki.counts, err = rki.count(e)
 		if err != nil {
 			return
@@ -40,7 +40,7 @@ func (rki *rkiType) count(e *colly.HTMLElement) (counts map[string]int, err erro
 
 func (rki *rkiType) date(e *colly.HTMLElement) (time.Time, error) {
 	return position{
-		Selector: "p.null",
+		Selector: "p",
 		Match:    "Stand: 2.1.2006, 15:04 Uhr",
 	}.grabDate(e)
 }
