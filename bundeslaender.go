@@ -157,7 +157,7 @@ func regions() caseRegions {
 			Listentry: position{"", ""},
 			Casecount: position{
 				Selector: ".textchapter_frame > p",
-				Match:    `landesweit auf ([.\d]+) `,
+				Match:    `landesweit auf ([.\d]+)`,
 			},
 			Timestamp: position{
 				Selector: ".textchapter_frame > p > strong",
