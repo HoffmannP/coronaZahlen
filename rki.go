@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strings"
 	"time"
 
@@ -14,9 +15,12 @@ type rkiType struct {
 }
 
 func loadRKI() (rki rkiType, err error) {
+	found := false
+	selector := "#main > .text"
 	rki.url = "https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html"
 	c := colly.NewCollector()
-	c.OnHTML("#main > .text", func(e *colly.HTMLElement) {
+	c.OnHTML(selector, func(e *colly.HTMLElement) {
+		found = true
 		rki.counts, err = rki.count(e)
 		if err != nil {
 			return
@@ -25,6 +29,9 @@ func loadRKI() (rki rkiType, err error) {
 		return
 	})
 	c.Visit(rki.url)
+	if !found {
+		err = fmt.Errorf("Selektor '%s' wurde nicht gefunden", selector)
+	}
 	return
 }
 

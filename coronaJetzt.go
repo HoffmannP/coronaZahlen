@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/gocolly/colly/v2"
@@ -24,8 +25,11 @@ func loadCj() (cj cjType, err error) {
 
 func (cj *cjType) count() (counts map[string]int, err error) {
 	counts = make(map[string]int)
+	found := false
+	selector := "table"
 	c := colly.NewCollector()
-	c.OnHTML("table", func(e *colly.HTMLElement) {
+	c.OnHTML(selector, func(e *colly.HTMLElement) {
+		found = true
 		rows := e.DOM.Find("tr")
 		for i := 0; i < rows.Length(); i++ {
 			cells := rows.Eq(i).Find("td")
@@ -33,15 +37,24 @@ func (cj *cjType) count() (counts map[string]int, err error) {
 		}
 	})
 	c.Visit(cj.url)
+	if !found {
+		err = fmt.Errorf("Selektor '%s' wurde nicht gefunden", selector)
+	}
 	return
 }
 
 func (cj *cjType) date() (date time.Time, err error) {
 	c := colly.NewCollector()
-	c.OnHTML(".vc_row > .vc_col-sm-4:first-child > .vc_column-inner > div > div > p", func(e *colly.HTMLElement) {
+	found := false
+	selector := ".vc_row > .vc_col-sm-4:first-child > .vc_column-inner > div > div > p"
+	c.OnHTML(selector, func(e *colly.HTMLElement) {
+		found = true
 		date, err = toDate(e.DOM.Text(), "Letzte Aktualisierung aller Zahlen. 2.01.2006, 15.04 Uhr.")
 	})
 	c.Visit("https://www.coronavirus.jetzt/")
+	if !found {
+		err = fmt.Errorf("Selektor '%s' wurde nicht gefunden", selector)
+	}
 	return
 }
 

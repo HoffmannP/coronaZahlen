@@ -109,18 +109,25 @@ func grab(e *colly.HTMLElement, p position) (string, error) {
 	return t[1], nil
 }
 
-func (r *caseRegion) url() string {
+func (r *caseRegion) url() (url string, err error) {
 	if r.Listentry.Selector != "" {
+		found := false
+		selector := r.Listentry.Selector
 		c := colly.NewCollector()
-		c.OnHTML(r.Listentry.Selector, func(e *colly.HTMLElement) {
+		c.OnHTML(selector, func(e *colly.HTMLElement) {
+			found = true
 			path, exists := e.DOM.Attr("href")
 			if exists {
 				r.URL = r.Listentry.Match + path
 			}
 		})
 		c.Visit(r.URL)
+		if !found {
+			err = fmt.Errorf("Selektor '%s' wurde nicht gefunden", selector)
+		}
 	}
-	return r.URL
+	url = r.URL
+	return
 }
 
 func (r *caseRegion) loadRegion() (num int, ts time.Time, err error) {
@@ -129,6 +136,10 @@ func (r *caseRegion) loadRegion() (num int, ts time.Time, err error) {
 	}
 	maxTries := 2
 	retries := 0
+	url, err := r.url()
+	if err != nil {
+		return
+	}
 	c := colly.NewCollector()
 	c.OnHTML("body", func(e *colly.HTMLElement) {
 		num, err = r.Casecount.grabNumber(e)
@@ -146,11 +157,12 @@ func (r *caseRegion) loadRegion() (num int, ts time.Time, err error) {
 			if retries > 1 {
 				err = fmt.Errorf("Needed %d retries b/c timeout", retries)
 			}
-			c.Visit(r.url())
+
+			c.Visit(url)
 		} else {
 			err = netErr
 		}
 	})
-	c.Visit(r.url())
+	c.Visit(url)
 	return
 }
