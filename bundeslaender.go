@@ -192,11 +192,11 @@ func regions() caseRegions {
 			URL:       "https://www.schleswig-holstein.de/DE/Landesregierung/I/Presse/_documents/Corona-Liste_Kreise.html",
 			Listentry: position{"", ""},
 			Casecount: position{
-				Selector: ".singleview > div > table > tbody > tr:last-child > td:nth-child(3)",
+				Selector: ".singleview > div > table > tbody > tr:last-child > td:nth-child(2)",
 				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
-				Selector: ".singleview > div > table > thead > tr > th:nth-child(3)",
+				Selector: ".singleview > div > table > thead > tr > th:nth-child(2)",
 				Match:    "Stand 2.01",
 			},
 		},
