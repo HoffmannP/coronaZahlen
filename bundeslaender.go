@@ -32,12 +32,12 @@ func regions() caseRegions {
 			URL:       "https://www.lgl.bayern.de/gesundheit/infektionsschutz/infektionskrankheiten_a_z/coronavirus/karte_coronavirus/index.htm",
 			Listentry: position{"", ""},
 			Casecount: position{
-				Selector: "div.row > div:nth-child(2) > table > tbody > tr:last-child > td:last-child",
+				Selector: "#content_1c > .row > .col > h2 + table > tbody > tr:last-child > td:nth-child(2)",
 				Match:    `([.\d]+)`,
 			},
 			Timestamp: position{
-				Selector: ".row > div > .bildunterschrift",
-				Match:    "*Stand: 2.01.2006 15:04 Uhr.",
+				Selector: "#content_1c > .row > .col > h2 + table > caption",
+				Match:    "Stand: 2.01.2006, 15:04 Uhr",
 			},
 		},
 		"Berlin": {
@@ -144,12 +144,12 @@ func regions() caseRegions {
 			URL:       "https://msagd.rlp.de/de/unsere-themen/gesundheit-und-pflege/gesundheitliche-versorgung/oeffentlicher-gesundheitsdienst-hygiene-und-infektionsschutz/infektionsschutz/informationen-zum-coronavirus-sars-cov-2/",
 			Listentry: position{"", ""},
 			Casecount: position{
-				Selector: ".links > .textpic-content > .small-12 > p",
+				Selector: ".links > .textpic-content > .small-12 > p:first-child",
 				Match:    `insgesamt ([.\d]+).bestätigte`,
 			},
 			Timestamp: position{
-				Selector: "table > tbody > tr:last-child > td",
-				Match:    "2.1. 15.04 Uhr",
+				Selector: ".links > .textpic-content > .small-12 > p:nth-last-child(2)",
+				Match:    "15.04 Uhr, 2. January",
 			},
 		},
 		"Saarland": {
