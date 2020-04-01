@@ -28,7 +28,8 @@ func parseToRegexp(p string) string {
 	p = regexp.MustCompile(`%hour%`).ReplaceAllLiteralString(p, `\b(?:[01]?\d|2[0-4])\b`)
 	p = regexp.MustCompile(`%minute%`).ReplaceAllLiteralString(p, `(?:.%minute%)?`)
 	p = regexp.MustCompile(`%minute%`).ReplaceAllLiteralString(p, `\b(?:[0-5]?\d|60)\b`)
-	return "(" + regexp.MustCompile(`%year%`).ReplaceAllLiteralString(p, `\b(?:\d\d)?\d\d\b`) + ")"
+	p = regexp.MustCompile(`%year%`).ReplaceAllLiteralString(p, `\b(?:\d\d)?\d\d\b`)
+	return "(" + strings.ReplaceAll(p, " ", " +") + ")"
 }
 
 func errorHandler(text string, err error) {

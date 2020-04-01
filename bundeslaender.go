@@ -113,7 +113,7 @@ func regions() caseRegions {
 			},
 			Timestamp: position{
 				Selector: "table > tbody > tr:nth-child(2) > td:nth-child(3)",
-				Match:    "2.01. 15:04",
+				Match:    "Stand 2.01. \n15:04 Uhr",
 			},
 		},
 		"Niedersachsen": {
@@ -148,20 +148,20 @@ func regions() caseRegions {
 				Match:    `insgesamt ([.\d]+).bestätigte`,
 			},
 			Timestamp: position{
-				Selector: ".links > .textpic-content > .small-12 > p:nth-last-child(2)",
-				Match:    "15.04 Uhr, 2. January",
+				Selector: "table > tbody > tr:last-child > td",
+				Match:    "2.1. 15.04 Uhr",
 			},
 		},
 		"Saarland": {
-			URL:       "https://www.saarland.de/254183.htm",
+			URL:       "https://corona.saarland.de/DE/service/chronologie-corona/chronologie-corona_node.html",
 			Listentry: position{"", ""},
 			Casecount: position{
-				Selector: ".textchapter_frame > p",
+				Selector: ".isFirstInSlot + p",
 				Match:    `landesweit auf ([.\d]+)`,
 			},
 			Timestamp: position{
-				Selector: ".textchapter_frame > p > strong",
-				Match:    "2.01.2006 (15:04)",
+				Selector: ".isFirstInSlot + p > strong",
+				Match:    "2.01.2006 - 15:04 Uhr",
 			},
 		},
 		"Sachsen": {
